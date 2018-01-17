@@ -14,94 +14,86 @@ Verkefni 1 sun 28. jan
 ---------------------------------------------------------------------
 
 
-		Sem notandi vill ég geta leitað eftir staðsetningu svo ég finni hótel á rættum stað.
+		Sem notandi vil ég geta leitað eftir staðsetningu svo ég finni hótel á rættum stað.
 
-		Sem notandi vill ég geta leitað eftir nafn hótels svo ég geti fundið ákveðið hótel.
+		Sem notandi vil ég geta leitað eftir nafn hótels svo ég geti fundið ákveðið hótel.
 
-		Sem notandi vill ég geta leitað eftir dagsetningu svo ég finni hótel á réttum tíma.
+		Sem notandi vil ég geta leitað eftir dagsetningu svo ég finni hótel á réttum tíma.
 
-		Sem notandi vill ég geta valið fjölda gesta svo ég fá bara niðurstöður sem rúma gestafjöldann.
+		Sem notandi vil ég geta valið fjölda gesta svo ég fá bara niðurstöður sem rúma gestafjöldann.
 
-		Sem notandi vill ég geta valið fjölda herbergja ef gestir skildu vilja vera í sitthvorum herbergjum.
+		Sem notandi vil ég geta valið fjölda herbergja ef gestir skildu vilja vera í sitthvorum herbergjum.
+
+		Sem notandi vil ég geta bókað ferð með leigubíl frá flugvelli á hótel.
 
 		Sem business maður þá vil ég geta leitað eftir vinsælum stöðum fyrir business menn.
 
-<<<<<<< HEAD
-=======
-		Sem notandi vil ég geta geymt það sem ég hef skoðað svo ég þurfi ekki að leita upp staði sem ég ef skoðað áður.
+		Sem notandi vil ég geta raðað niðurstöðum eftir verði til að finna rétt verð.
+
+		Sem notandi vil ég geta raðað niðurstöðum eftir einkunn svo ég geti valið ákveð
+
+		Sem notandi vil ég geta raðað niðurstöðum eftir einkunn svo ég geti valið réttan gæðaflokk.
+
+		Sem notandi vil ég geta raðað niðurstöðum eftir vinsældum svo ég þurfi ekki að spurja á netinu.
+
+
+
+		Sem notandi vil ég geta síað niðurstöðum eftir verði svo ég finni hótel á réttu verðbili.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir umsagnareinkunn svo ég sjái bara hótel á einkunnarbili sem hentar mér.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir stjörnufjölda svo ég sjái bara hótel í ákveðnum gæðaflokk.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir því hvort morgunmatur sé innifalinn því ég vil ekki borga auka fyrir hann.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir því hvort það sé hjónarúm eða einstaklingsrúm í herberginu því ég vil ekki sofa í sama rúmi og félagi minn.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir því hvort wi-fi sé ókeypis því ég vil ekki borga auka fyrir það.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir því hvort það séu bílastæði við hótelið því ég verð á bílaleigubíl.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir því hvort það sé líkamsrækt á hótelinu því ég vil hreyfa mig á hverjum degi.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir því hvort herbergin séu reyklaus því ég þoli ekki reykingalykt.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir þvi hvort það sé sundlaug á hótelinu því ég elska að taka smá sundsprett.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir því hvort að gæludýr séu leyfð því ég ferðast alltaf með hamsturinn minn með mér.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir því hvort það sé aðstaða fyrir fatlaða því ég er í hjólastól.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir því hvort það sé veitingastaður á hótelinu því ég vil ekki þurfa fara út á kvöldinn til að borða.
+
+		Sem notandi vil ég geta síað niðurstöðum eftir því hvort það sé loftkæling því ég er rosalega heitfengur og vil hafa kalt.
+
+
+
+		Sem notandi vil ég geta skoðað myndir af hótelinu svo ég viti við hverju ég á að búast.
+
+		Sem notandi vil ég geta skoðað upplýsingar um hótelið svo ég geti betur ákveðið hvað ég á að bóka.
+
+		Sem notandi vil ég geta séð einkunn hótelsins svo ég geti valið góð hótel.
+
+		Sem notandi vil ég geta séð á korti hvar hótelið svo ég geti valið hótel á réttum stað.
+
+		Sem notandi vil ég geta vistað hótel svo ég geti auðveldlega fundið það aftur seinna.
+
+		Sem notandi vil ég geta deilt hótelinu með vinum mínum og fjölskyldu ef við erum að ákveða hótel í sameiningu.
+
+
+
+		Sem notandi vil ég geta skráð mig inn svo ég þurfi ekki alltaf að skrá inn notandaupplýsingar þegar ég bóka.
 
 		Sem notandi vil ég get fengið verð í mismunandi gjaldmiðlum svo ég geti borið saman við minn gjaldmiðil.
 
-		Sem notandi vil ég geta valið vinsælustu staðina svo ég þurfi ekki að spurja á netinu.
-
-		Sem notandi vil ég geta bókað ferð með leigubíl frá flugvelli á hótel.
+		Sem notandi vil ég geta gefið hótelinu einkunn til að deila upplifun minni með öðrum.
 
 		Sem notandi vil ég geta skrifaðum um reynslu mína til að upplýsa aðra um staðinn.
 
 
 
->>>>>>> f9bdc8efbce3977164f1fea086ad429053db6be0
+		Sem hóteleigandi vil ég geta breytt upplýsingum um hótelið mitt svo viðskiptavinir fái nýjustu upplýsingar.
 
-		Sem notandi vill ég geta raðað niðurstöðum eftir verði til að finna rétt verð.
+		Sem hóteleigandi vil ég geta bætt við og tekið út myndir af hótelinu svo viðskiptavinir sjái nýlegar myndir.
 
-		Sem notandi vill ég geta raðað niðurstöðum eftir einkunn svo ég geti valið ákveð
-
-		Sem notandi vill ég geta raðað niðurstöðum eftir einkunn svo ég geti valið réttan gæðaflokk.
-
-
-
-		Sem notandi vill ég geta síað niðurstöðum eftir verði svo ég finni hótel á réttu verðbili.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir umsagnareinkunn svo ég sjái bara hótel á einkunnarbili sem hentar mér.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir stjörnufjölda svo ég sjái bara hótel í ákveðnum gæðaflokk.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir því hvort morgunmatur sé innifalinn því ég vill ekki borga auka fyrir hann.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir því hvort það sé hjónarúm eða einstaklingsrúm í herberginu því ég vill ekki sofa í sama rúmi og félagi minn.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir því hvort wi-fi sé ókeypis því ég vill ekki borga auka fyrir það.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir því hvort það séu bílastæði við hótelið því ég verð á bílaleigubíl.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir því hvort það sé líkamsrækt á hótelinu því ég vill hreyfa mig á hverjum degi.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir því hvort herbergin séu reyklaus því ég þoli ekki reykingalykt.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir þvi hvort það sé sundlaug á hótelinu því ég elska að taka smá sundsprett.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir því hvort að gæludýr séu leyfð því ég ferðast alltaf með hamsturinn minn með mér.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir því hvort það sé aðstaða fyrir fatlaða því ég er í hjólastól.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir því hvort það sé veitingastaður á hótelinu því ég vill ekki þurfa fara út á kvöldinn til að borða.
-
-		Sem notandi vill ég geta síað niðurstöðum eftir því hvort það sé loftkæling því ég er rosalega heitfengur og vill hafa kalt.
-
-
-
-		Sem notandi vill ég geta skoðað myndir af hótelinu svo ég viti við hverju ég á að búast.
-
-		Sem notandi vill ég geta skoðað upplýsingar um hótelið svo ég geti betur ákveðið hvað ég á að bóka.
-
-		Sem notandi vill ég geta séð einkunn hótelsins svo ég geti valið góð hótel.
-
-		Sem notandi vill ég geta séð á korti hvar hótelið svo ég geti valið hótel á réttum stað.
-
-		Sem notandi vill ég geta vistað hótel svo ég geti auðveldlega fundið það aftur seinna.
-
-		Sem notandi vill ég geta deilt hótelinu með vinum mínum og fjölskyldu ef við erum að ákveða hótel í sameiningu.
-
-
-
-		Sem notandi vill ég geta skráð mig inn svo ég þurfi ekki alltaf að skrá inn notandaupplýsingar þegar ég bóka.
-
-		Sem notandi vill ég geta gefið hótelinu einkunn til að deila upplifun minni með öðrum.
-
-
-
-		Sem hóteleigandi vill ég geta breytt upplýsingum um hótelið mitt svo viðskiptavinir fái nýjustu upplýsingar.
-
-		Sem hóteleigandi vill ég geta bætt við og tekið út myndir af hótelinu svo viðskiptavinir sjái nýlegar myndir.
-
-		Sem hóteleigandi vill ég geta breytt verðinu á nóttum til að bregðast við breytingum á markaðnum.
+		Sem hóteleigandi vil ég geta breytt verðinu á nóttum til að bregðast við breytingum á markaðnum.
