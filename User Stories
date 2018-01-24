@@ -14,7 +14,7 @@ Verkefni 1 sun 28. jan
 ---------------------------------------------------------------------
 
 
-		Sem notandi vil ég geta leitað eftir staðsetningu svo ég finni hótel á rættum stað.
+		Sem notandi vil ég geta leitað eftir staðsetningu svo ég sjái bara hótel þar sem ég er að fara.
 
 		Sem notandi vil ég geta leitað eftir nafn hótels svo ég geti fundið ákveðið hótel.
 
@@ -76,9 +76,13 @@ Verkefni 1 sun 28. jan
 
 		Sem notandi vil ég geta séð á korti hvar hótelið svo ég geti valið hótel á réttum stað.
 
+		Sem notandi vil ég geta bókað hótel-pickup með hótelinu ef það er boðið uppá það því ég nenni ekki að standa í neinu veseni á flugvellinum.
+
 		Sem notandi vil ég geta vistað hótel svo ég geti auðveldlega fundið það aftur seinna.
 
 		Sem notandi vil ég geta deilt hótelinu með vinum mínum og fjölskyldu ef við erum að ákveða hótel í sameiningu.
+
+		Sem notandi vil ég geta skoðað hótel sem ég hef áður gist á til að geta skoðað það seinna.
 
 
 
@@ -86,14 +90,20 @@ Verkefni 1 sun 28. jan
 
 		Sem notandi vil ég get fengið verð í mismunandi gjaldmiðlum svo ég geti borið saman við minn gjaldmiðil.
 
+		Sem notandi vil ég geta breytt tungumálinu svo ég geti lesið allt í mínu móðurmáli.
+
 		Sem notandi vil ég geta gefið hótelinu einkunn til að deila upplifun minni með öðrum.
 
-		Sem notandi vil ég geta skrifaðum um reynslu mína til að upplýsa aðra um staðinn.
+		Sem notandi vil ég geta skrifað umsögn um hótel sem ég hef gist á til að upplýsa aðra um staðinn.
 
 
+
+		Sem hóteleigandi vill ég geta skráð mig inn til að fá aðgang til að geta breytt einhverju um hótelin mín.
 
 		Sem hóteleigandi vil ég geta breytt upplýsingum um hótelið mitt svo viðskiptavinir fái nýjustu upplýsingar.
 
 		Sem hóteleigandi vil ég geta bætt við og tekið út myndir af hótelinu svo viðskiptavinir sjái nýlegar myndir.
 
 		Sem hóteleigandi vil ég geta breytt verðinu á nóttum til að bregðast við breytingum á markaðnum.
+
+		Sem hóteleigandi vil ég geta svarað umsögnum til að addressa any concerns the client might have.
