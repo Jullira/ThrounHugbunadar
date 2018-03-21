@@ -11,4 +11,16 @@ package vinnsla;
  */
 public class Account {
     
+    public String userName;
+    public int hotelID;
+    
+    private String password;
+    private boolean isAdmin;
+    
+    public void updatePrivilege(arraylist<> a) {
+    }
+    
+    public void updatePrivilege(arraylist<> a) {
+    }
+    
 }

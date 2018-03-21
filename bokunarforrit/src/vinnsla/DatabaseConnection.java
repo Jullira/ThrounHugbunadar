@@ -11,4 +11,15 @@ package vinnsla;
  */
 public class DatabaseConnection {
     
+    private String table;
+    private arraylist<String> commands;
+    
+    public void openConnection(String a) {
+        
+    }
+    
+    public arraylist<String> runCommands(arraylist<String> s) {
+        
+    }
+    
 }

@@ -11,4 +11,10 @@ package vinnsla;
  */
 public class Booking {
     
+    private Account user;
+    private Hotel hotel;
+    private int startDate;
+    private int endDate;
+    private int rommNumber;
+    
 }
