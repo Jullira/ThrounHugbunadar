@@ -1,0 +1,22 @@
+User story 1
+
+User story 2
+
+User story 3
+SELECT Description, Pictures FROM Hotels WHERE Name=<Nafn hótels>;
+
+User story 4
+SELECT Name FROM Hotels WHERE AreaCode=<Póstnúmer svæðis sem beðið er um>;
+
+User story 5
+SELECT * FROM Hotels WHERE Name=<Nafn hótels sem leitað er að>;
+
+User story 6
+INSERT INTO <Nafn Hótels>Review VALUES (<Nafn Hótels>, <Póstnúmer Hótels>, <Dagsetning>, <Nafn notanda>, <Einkunn>, <Umsögn (má vera tómt)>);
+
+User story 7 er ekki gagnagrunnstengd
+
+User story 8
+Það vantar inn dálk með verði í töflurnar um herbergin, hann mun heita Price þegar ég er búinn að bæta honum við. Til að raða eftir honum má bæta við
+"ORDER BY Price ASC"
+aftan við SELECT skipunina
