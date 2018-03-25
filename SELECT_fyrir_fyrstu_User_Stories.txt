@@ -1,6 +1,7 @@
-User story 1
+User story 1 og User story 2
+SELECT RoomNumber FROM <Nafn Hótels>RoomsAvailable<Mánuður (3 stafir)>2019 WHERE RoomSize=<4, 2 eða 1> AND Date<númer fyrsta dags>=1 AND Date<númer annars dags>=1 AND ... ;
 
-User story 2
+Það þarf svo aðra svona skipun fyrir seinni hluta tímabils ef það nær milli mánaða því það er í annari töflu
 
 User story 3
 SELECT Description, Pictures FROM Hotels WHERE Name=<Nafn hótels>;
