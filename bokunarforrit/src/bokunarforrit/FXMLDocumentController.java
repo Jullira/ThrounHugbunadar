@@ -84,21 +84,11 @@ public class FXMLDocumentController implements Initializable {
         String endDateString = dateToString(endDate);
         int adultInt = Integer.parseInt(adults.getValue());
         int childrenInt = Integer.parseInt(children.getValue());
+        int persons = adultInt + childrenInt;
         
         nyLeit.newSearch(searchStringText, startDateString, endDateString, adultInt, childrenInt);
         newLeitPage(event);
         
-        
-        System.out.println(
-            nyLeit.getSearchString() + 
-            nyLeit.getStartDate() + 
-            nyLeit.getEndDate() + 
-            nyLeit.getAdultGuests() + 
-            nyLeit.getChildrenGuests());
-        
-        String a = "SELECT Name FROM Hotels;";
-        DatabaseConnection dc = new DatabaseConnection();
-        dc.openConnection(a);
     }
     
 

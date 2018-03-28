@@ -17,31 +17,30 @@ import javafx.stage.Stage;
  */
 public class Bokunarforrit extends Application {
     // þetta er view
-    
-    
+
     // Þetta á ekki að vera void endilega, vorum ekki með neina skilgreiningu í UML-inu okkar
     public void searchHotels() {
-        
+
     }
-    
+
     public void logIn() {
-        
+
     }
-    
+
     public void logOut() {
-        
+
     }
-    
+
     public void createUser() {
-        
+
     }
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.show();
     }
@@ -52,5 +51,5 @@ public class Bokunarforrit extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
