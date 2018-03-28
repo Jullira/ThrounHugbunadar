@@ -99,9 +99,6 @@ public class FXMLDocumentController implements Initializable {
         String a = "SELECT Name FROM Hotels;";
         DatabaseConnection dc = new DatabaseConnection();
         dc.openConnection(a);
-        String b = "SELECT RoomNumber FROM HlemmurSquareRoomsAvailableFeb2019 WHERE RoomSize=4 AND Date27=1;";
-        dc.openConnection(b);
-        
     }
     
 

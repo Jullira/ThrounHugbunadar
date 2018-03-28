@@ -32,7 +32,9 @@ public class DatabaseConnection {
             System.out.println("Tenging Virk");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(a);
-            System.out.println(rs.getString("Name"));
+            while (rs.next()){
+                System.out.println(rs.getString("Name"));
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
