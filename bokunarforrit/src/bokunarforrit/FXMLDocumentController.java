@@ -5,6 +5,7 @@
  */
 package bokunarforrit;
 
+import controller.SearchController;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -56,6 +57,8 @@ public class FXMLDocumentController implements Initializable {
     
     private leit nyLeit = new leit();
     
+    private SearchController newSController = new SearchController();
+    
     private final ObservableList<String> stringNumList = FXCollections.observableArrayList("0","1","2","3","4","5","6","7","8","9","10");
     
     @Override
@@ -88,6 +91,8 @@ public class FXMLDocumentController implements Initializable {
         
         nyLeit.newSearch(searchStringText, startDateString, endDateString, adultInt, childrenInt);
         newLeitPage(event);
+        
+        newSController.searchHotels(nyLeit);
         
     }
     

@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,7 +21,9 @@ public class DatabaseConnection {
     private String table;
     //private arraylist<String> commands;
     
-    public void makeQueryString(leit nyLeit){
+    public ArrayList<String> makeQueryString(leit nyLeit){
+        ArrayList<String> results = new ArrayList<>();
+        
         String searchStringText = nyLeit.getSearchString().replaceAll("\\s+","");
         String [] startDateParts = nyLeit.getStartDate().split("-");
         String startYear = startDateParts[0];
@@ -51,15 +54,17 @@ public class DatabaseConnection {
         String query = "SELECT RoomNumber FROM " + searchStringText + "RoomsAvailable" + startMonth + "19" + " WHERE RoomSize = " + persons + " AND Date" + startDay + " = 1";
         System.out.println(query);
         DatabaseConnection dc = new DatabaseConnection();
-        dc.openConnection(query);
+        results = dc.openConnection(query);
+        
+        return results;
     }
     
     /**
      * Opnar tengingu við gagnagrunn.
      * @param query 
      */
-    public void openConnection(String query) {
-        
+    public ArrayList<String> openConnection(String query) {
+        ArrayList<String> results = new ArrayList<>();
         Connection conn = null;
         try {
             String url = "jdbc:sqlite:dev7.db";
@@ -68,7 +73,9 @@ public class DatabaseConnection {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
-                System.out.println(rs.getString("Name"));
+                String output = rs.getString("Name");
+                System.out.println(output);
+                results.add(output);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -82,6 +89,7 @@ public class DatabaseConnection {
                 System.out.println(ex.getMessage());
             }
         }
+        return results;
     }
     
 }

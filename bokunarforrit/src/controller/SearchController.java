@@ -5,15 +5,20 @@
  */
 package controller;
 
+import vinnsla.DatabaseConnection;
+import vinnsla.leit;
+import bokunarforrit.FXMLDocumentController;
+
 /**
  *
  * @author gretabjorg
  */
 public class SearchController {
     
-    // Þetta á ekki að vera void endilega, vorum ekki með neina skilgreiningu í UML-inu okkar
-    
-    public void searchHotels(){
+    public void searchHotels(leit nyleit){
+        DatabaseConnection dc = new DatabaseConnection();
+        dc.makeQueryString(nyleit);
+        
     }
     
 }
