@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #dbffd1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bokunarforrit.FXMLDocumentController">
+   <children>
+      <VBox layoutX="300.0" layoutY="100.0" maxHeight="500.0" prefHeight="500.0" prefWidth="400.0">
+         <children>
+            <TextField fx:id="searchString" onMouseClicked="#searchStringAction" prefHeight="50.0" prefWidth="400.0" promptText="Borg, bær eða nafn hótels">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="100.0" />
+               </VBox.margin>
+            </TextField>
+            <HBox prefHeight="80.0" prefWidth="400.0">
+               <children>
+                  <DatePicker fx:id="startDate" prefHeight="53.0" prefWidth="162.0" promptText="Fra">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="50.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                  </DatePicker>
+                  <DatePicker fx:id="endDate" prefHeight="53.0" prefWidth="162.0" promptText="Til">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="50.0" top="15.0" />
+                     </HBox.margin>
+                  </DatePicker>
+               </children>
+            </HBox>
+            <HBox prefHeight="80.0" prefWidth="200.0">
+               <children>
+                  <ComboBox fx:id="adults" prefHeight="44.0" prefWidth="139.0" promptText="Fullorðnir" style="-fx-background-color: dbffd1; -fx-border-style: solid;">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="5.0" top="15.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="children" prefHeight="44.0" prefWidth="90.0" promptText="Börn" style="-fx-background-color: dbffd1; -fx-border-style: solid;">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="5.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="51.0" prefWidth="90.0" style="-fx-background-color: lightgreen; -fx-border-style: solid; -fx-border-color: grey;" text="Leita">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Text fx:id="errorMessage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+      <HBox layoutX="1.0" prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: lightgreen;">
+         <children>
+            <ImageView fx:id="banner" fitHeight="100.0" fitWidth="250.0" onMouseClicked="#bannerMouseClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="20.0" left="375.0" right="375.0" top="20.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

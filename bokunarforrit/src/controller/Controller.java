@@ -10,30 +10,11 @@ package controller;
  * @author gretabjorg
  */
 public class Controller {
+    
+    // Ætlum við að hafa þetta ennþá til?
+    // Til hvers er openUpdate???
+    
     // Þetta á ekki að vera void endilega, vorum ekki með neina skilgreiningu í UML-inu okkar
-    
-    public void searchHotels(){
-    }
-    
-    public void openBooking() {
-    }
-    
-    public void openReview() {
-    }
-    
     public void openUpdate() {
-    }
-    
-    public void cancelBooking() {
-    }
-    
-    public void newBooking() {
-    }
-    
-    public void deleteReview() {
-    }
-    
-    public void sendToDatabase() {
-        
     }
 }
