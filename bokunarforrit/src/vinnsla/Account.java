@@ -16,11 +16,11 @@ public class Account {
     
     private String password;
     private boolean isAdmin;
-    
+    /*
     public void updatePrivilege(arraylist<> a) {
     }
     
     public void updatePrivilege(arraylist<> a) {
     }
-    
+    */
 }

@@ -28,6 +28,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import vinnsla.leit;
+import vinnsla.DatabaseConnection;
 
 /**
  *
@@ -87,12 +88,18 @@ public class FXMLDocumentController implements Initializable {
         nyLeit.newSearch(searchStringText, startDateString, endDateString, adultInt, childrenInt);
         newLeitPage(event);
         
+        
         System.out.println(
             nyLeit.getSearchString() + 
             nyLeit.getStartDate() + 
             nyLeit.getEndDate() + 
             nyLeit.getAdultGuests() + 
             nyLeit.getChildrenGuests());
+        
+        String a = "SELECT Name FROM Hotels;";
+        DatabaseConnection dc = new DatabaseConnection();
+        dc.openConnection(a);
+        
     }
     
 

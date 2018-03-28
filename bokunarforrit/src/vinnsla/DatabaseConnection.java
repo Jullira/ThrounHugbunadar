@@ -5,6 +5,12 @@
  */
 package vinnsla;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author gretabjorg
@@ -12,14 +18,33 @@ package vinnsla;
 public class DatabaseConnection {
     
     private String table;
-    private arraylist<String> commands;
+    //private arraylist<String> commands;
     
+    /**
+     * Opnar tengingu við gagnagrunn.
+     * @param a 
+     */
     public void openConnection(String a) {
-        
-    }
-    
-    public arraylist<String> runCommands(arraylist<String> s) {
-        
+        Connection conn = null;
+        try {
+            String url = "jdbc:sqlite:dev6.db";
+            conn = DriverManager.getConnection(url);
+            System.out.println("Tenging Virk");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(a);
+            System.out.println(rs.getString("Name"));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn !=null) {
+                    //Lokum tengingunni ef hún átti sér stað.
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
     }
     
 }
