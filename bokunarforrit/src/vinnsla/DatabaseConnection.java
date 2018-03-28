@@ -20,18 +20,13 @@ public class DatabaseConnection {
     private String table;
     //private arraylist<String> commands;
     
-    /**
-     * Opnar tengingu við gagnagrunn.
-     * @param a 
-     */
-    public void openConnection(leit nyLeit) {
-            
+    public void makeQueryString(leit nyLeit){
         String searchStringText = nyLeit.getSearchString().replaceAll("\\s+","");
         String [] startDateParts = nyLeit.getStartDate().split("-");
         String startYear = startDateParts[0];
         String startMonth = startDateParts[1];
         String startDay;
-        if(startDateParts[2] != "10"){
+        if(!"10".equals(startDateParts[2])){
             startDay = startDateParts[2].replaceFirst("0", "");
         }
         else {
@@ -57,10 +52,17 @@ public class DatabaseConnection {
         System.out.println(query);
         DatabaseConnection dc = new DatabaseConnection();
         dc.openConnection(query);
+    }
+    
+    /**
+     * Opnar tengingu við gagnagrunn.
+     * @param query 
+     */
+    public void openConnection(String query) {
         
         Connection conn = null;
         try {
-            String url = "jdbc:sqlite:dev6.db";
+            String url = "jdbc:sqlite:dev7.db";
             conn = DriverManager.getConnection(url);
             System.out.println("Tenging Virk");
             Statement stmt = conn.createStatement();
