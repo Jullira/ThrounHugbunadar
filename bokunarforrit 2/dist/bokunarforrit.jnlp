@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="bokunarforrit.jnlp">
+  <information>
+    <title>bokunarforrit</title>
+    <vendor>birgi</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="bokunarforrit.jar" size="6987119" download="eager" />
+    <jar href="lib/sqlite-jdbc-3.18.0.jar" size="6190949" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="bokunarforrit" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="bokunarforrit.Bokunarforrit"  name="bokunarforrit" />
+  <update check="always"/>
+</jnlp>
