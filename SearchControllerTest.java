@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import controller.SearchController;
 import java.util.ArrayList;
 import org.junit.After;
@@ -12,10 +6,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import vinnsla.leit;
 
-/**
- *
- * @author gretabjorg
- */
 public class SearchControllerTest {
     
     private String startDate;
@@ -25,8 +15,6 @@ public class SearchControllerTest {
     private String searchString;
     leit nyLeit = new leit();
     private SearchController sController = new SearchController();
-
-    
     
     @Before
     public void setUp() {
@@ -39,7 +27,11 @@ public class SearchControllerTest {
     
     @After
     public void tearDown() {
-
+        startDate = null;
+        endDate = null;
+        adultGuests = null;
+        childrenGuests = null;
+        searchString = null;
     }
     
     // profad med rettum gognum

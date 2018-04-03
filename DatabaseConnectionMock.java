@@ -1,16 +1,6 @@
 
 import java.util.ArrayList;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author gretabjorg
- */
 public class DatabaseConnectionMock {
     
     private String searchString;
@@ -33,14 +23,14 @@ public class DatabaseConnectionMock {
 
         if (this.persons <= 0)
         {
-            results.add("Number of guests must be greater than zero.");
+            this.results.add("Number of guests must be greater than zero.");
             return this.results;
         }
     
         if (this.persons > 24)
         {
             this.results.add("Number of guests exceeds hotel capacity.");
-            return results;
+            return this.results;
         }
         
         //Test 2:
