@@ -23,27 +23,23 @@ public class Booking {
     private String address;
     private int zipCode;
     private String city;
-    private int phoneNumber; // int or String??
+    private String phoneNumber; 
     private String email;
 
-    public Booking(String hotel, int startDate, int endDate, int adultGuests, int childrenGuests) {
+    public Booking(String hotel, int startDate, int endDate, int adultGuests, int childrenGuests, String fullName, String address, int zipCode, String city, String phoneNumber, String email) {
         this.hotel = hotel;
         this.startDate = startDate;
         this.endDate = endDate;
         this.adultGuests = adultGuests;
         this.childrenGuests = childrenGuests;
-    }
-    
-    /*public bookingInformation(String fullName, String address, int zipCode, String city, int phoneNumber, String email) {
         this.fullName = fullName;
         this.address = address;
         this.zipCode = zipCode;
         this.city = city;
         this.phoneNumber = phoneNumber;
         this.email = email;
-    }*/
-    
-
+    }
+   
     public String getHotel() {
         return hotel;
     }
@@ -81,7 +77,7 @@ public class Booking {
         return city;
     }
     
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
     
