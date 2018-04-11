@@ -5,6 +5,9 @@
  */
 package controller;
 
+import vinnsla.DatabaseConnection;
+import vinnsla.leit;
+
 /**
  *
  * @author gretabjorg
@@ -19,7 +22,10 @@ public class BookingController {
     public void cancelBooking() {
     }
     
-    public void newBooking() {
+    public void newBooking(leit nybokun) {
+        DatabaseConnection dc = new DatabaseConnection();
+        //dc.makeQueryString(nybokun);
+        dc.openConnection(nybokun);
     }
     
 }

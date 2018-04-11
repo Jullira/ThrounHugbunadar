@@ -10,26 +10,41 @@ package vinnsla;
  * @author gretabjorg
  */
 public class Booking {
-    
-    private Account user;
-    private Hotel hotel;
+   
+    // Information about the booking
+    private String hotel;
     private int startDate;
     private int endDate;
-    private int roomNumber;
+    private int adultGuests;
+    private int childrenGuests;
+    
+    // Information about the costumer
+    private String fullName;
+    private String address;
+    private int zipCode;
+    private String city;
+    private int phoneNumber; // int or String??
+    private String email;
 
-    public Booking(Account user, Hotel hotel, int startDate, int endDate, int roomNumber) {
-        this.user = user;
+    public Booking(String hotel, int startDate, int endDate, int adultGuests, int childrenGuests) {
         this.hotel = hotel;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.roomNumber = roomNumber;
+        this.adultGuests = adultGuests;
+        this.childrenGuests = childrenGuests;
     }
+    
+    /*public bookingInformation(String fullName, String address, int zipCode, String city, int phoneNumber, String email) {
+        this.fullName = fullName;
+        this.address = address;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }*/
+    
 
-    public Account getUser() {
-        return user;
-    }
-
-    public Hotel getHotel() {
+    public String getHotel() {
         return hotel;
     }
 
@@ -40,12 +55,37 @@ public class Booking {
     public int getEndDate() {
         return endDate;
     }
+    
+    public int getAdultGuests() {
+        return adultGuests;
+    }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public int getChildrenGuests() {
+        return childrenGuests;
     }
     
     
+    public String getFullName() {
+        return fullName;
+    }
     
+    public String getAddress() {
+        return address;
+    }
     
+    public int getZipCode() {
+        return zipCode;
+    }
+    
+    public String getCity() {
+        return city;
+    }
+    
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+    
+    public String getEmail() {
+    return email;
+    }
 }
