@@ -46,6 +46,10 @@ public class Hotel {
         this.reviewTableName = reviewTableName;
     }
     
+    public String getName() {
+        return name;
+    }
+    
     public String getAddress() {
         return address;
     }
