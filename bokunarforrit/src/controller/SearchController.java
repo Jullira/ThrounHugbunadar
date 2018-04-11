@@ -17,7 +17,6 @@ public class SearchController {
     
     public void searchHotels(leit nyleit){
         DatabaseConnection dc = new DatabaseConnection();
-        //dc.makeQueryString(nyleit);
         dc.openConnection(nyleit);
         
     }

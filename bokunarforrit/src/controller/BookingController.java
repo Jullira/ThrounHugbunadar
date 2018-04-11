@@ -5,8 +5,8 @@
  */
 package controller;
 
+import vinnsla.Booking;
 import vinnsla.DatabaseConnection;
-import vinnsla.leit;
 
 /**
  *
@@ -16,15 +16,14 @@ public class BookingController {
     
     // Þetta á ekki að vera void endilega, vorum ekki með neina skilgreiningu í UML-inu okkar
     
-    public void openBooking() {
-    }
+    /*public void openBooking() {
+    }*/
     
-    public void cancelBooking() {
-    }
+    /*public void cancelBooking() {
+    }*/
     
-    public void newBooking(leit nybokun) {
+    public void newBooking(Booking nybokun) {
         DatabaseConnection dc = new DatabaseConnection();
-        //dc.makeQueryString(nybokun);
         dc.openConnection(nybokun);
     }
     
