@@ -242,26 +242,22 @@ public class DatabaseConnection {
             nyLeit.getChildrenGuests());
         
         boolean searchHotelName = false;
-        for (int i = 0; i < hotels.size(); i++)
-        {
+        for (int i = 0; i < hotels.size(); i++) {
             searchHotelName = checkContains(nyLeit.getSearchString(), hotels.get(i), searchHotelName);
         }
         
-        if (searchHotelName)
-        {
+        if (searchHotelName) {
             // Temporary "hardcoded" SELECT command to have a placeholder while
             // other parts are worked on, only checks for start date and returns
             // the room numbers
-            query = "SELECT RoomNumber FROM " + searchStringText + "RoomsAvailable" + startMonth + "19" + " WHERE RoomSize = " + persons + " AND Date" + startDay + " = 1;";
+            // query = "SELECT RoomNumber FROM " + searchStringText + "RoomsAvailable" + startMonth + "19" + " WHERE RoomSize = " + persons + " AND Date" + startDay + " = 1;";
+            query = "SELECT Name, AreaCode FROM " + searchStringText + "RoomsAvailable" + startMonth + "19" + " WHERE RoomSize = " + persons + " AND Date" + startDay + " = 1;";
         }
-        else
-        {
+        else {
             query += "Name, AreaCode FROM Hotels WHERE ";
             
-            for (int i = 0; i < cities.size(); i++)
-            {
-                if (checkContains(nyLeit.getSearchString(), cities.get(i), false))
-                {
+            for (int i = 0; i < cities.size(); i++) {
+                if (checkContains(nyLeit.getSearchString(), cities.get(i), false)) {
                     switch (i) {
                         case 0: case 1:
                             postCodes.add(101);
@@ -567,13 +563,10 @@ public class DatabaseConnection {
                 }
             }
             
-            if (!postCodes.isEmpty())
-            {
-                for (int i = 0; i < postCodes.size(); i++)
-                {
+            if (!postCodes.isEmpty()) {
+                for (int i = 0; i < postCodes.size(); i++) {
                     query += ("AreaCode = " + postCodes.get(i));
-                    if (i < postCodes.size() - 1)
-                    {
+                    if (i < postCodes.size() - 1) {
                         query += " OR ";
                     }
                 }
@@ -582,8 +575,7 @@ public class DatabaseConnection {
                 // SELECT statement until then
                 query += ";";
             }
-            else
-            {
+            else {
                 // Same as above, here will be a check for room availability at
                 // each hotel that meets the search criteria for each requested
                 // date
@@ -594,18 +586,14 @@ public class DatabaseConnection {
         return query;
     }
     
-    private boolean checkContains(String a, String b, boolean check)
-    {
-        if (check)
-        {
+    private boolean checkContains(String a, String b, boolean check) {
+        if (check) {
             return true;
         }
-        else if (a.contains(b))
-        {
+        else if (a.contains(b)) {
             return true;
         }
-        else
-        {
+        else {
             return false;
         }
     }
@@ -614,20 +602,41 @@ public class DatabaseConnection {
      * Opnar tengingu við gagnagrunn.
      * @param query 
      */
-    public ArrayList<String> openConnection(leit nyLeit) {
+    public ArrayList<String[]> openConnection(leit nyLeit) {
         String query = makeQueryString(nyLeit);
-        ArrayList<String> results = new ArrayList<>();
+        ArrayList<String[]> tempResults = new ArrayList<>();
+        ArrayList<String[]> results = new ArrayList<>();
+        String[] output = new String[2];
+        String[] hotelOutput = new String[13];
         Connection conn = null;
         try {
             String url = "jdbc:sqlite:dev8.db";
+            String hotelInfo1 = "SELECT * FROM Hotels WHERE Name LIKE '";
+            String hotelInfo2 = "' AND AreaCode=";
+            String hotelInfo3 = ";";
             conn = DriverManager.getConnection(url);
             System.out.println("Tenging Virk");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
-                String output = rs.getString(1);
-                System.out.println(output);
-                results.add(output);
+                output[0] = rs.getString(1);
+                output[1] = rs.getString(2);
+                System.out.print(output[0] + " ");
+                System.out.println(output[1]);
+                tempResults.add(output);
+            }
+            for (int i = 0; i < tempResults.size(); i++)
+            {
+                rs = stmt.executeQuery(hotelInfo1 + tempResults.get(i)[0] + hotelInfo2 + tempResults.get(i)[1] + hotelInfo3);
+                while (rs.next())
+                {
+                    for (int j = 0; j < hotelOutput.length; j++)
+                    {
+                        hotelOutput[j] = rs.getString(j + 1);
+                    }
+                    System.out.println(hotelOutput[0]);
+                    results.add(hotelOutput);
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
