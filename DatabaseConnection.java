@@ -212,27 +212,12 @@ public class DatabaseConnection {
         cities.add("Vestmannaeyjar");
     }
     
-    private String makeQueryString(leit nyLeit){
-        String query = "SELECT ";
+    private ArrayList<String> makeQueryString(leit nyLeit, ArrayList<String[]> availableRooms){
+        String query = "";
+        ArrayList<String> queryList = new ArrayList<>();
         String searchStringText = nyLeit.getSearchString().replaceAll("\\s+","");
-        String [] startDateParts = nyLeit.getStartDate().split("-");
-        String startYear = startDateParts[0];
-        String startMonth = startDateParts[1];
-        String startDay;
-        if(!"10".equals(startDateParts[2])){
-            startDay = startDateParts[2].replaceFirst("0", "");
-        }
-        else {
-            startDay = startDateParts[2];
-        }
-        
-        String [] endDateParts = nyLeit.getEndDate().split("-");
-        String endYear = endDateParts[0];
-        String endMonth = endDateParts[1];
-        String endDay = endDateParts[2];
         
         int persons = nyLeit.getAdultGuests() + nyLeit.getChildrenGuests();
-        
         
         System.out.println(
             nyLeit.getSearchString() + 
@@ -242,20 +227,53 @@ public class DatabaseConnection {
             nyLeit.getChildrenGuests());
         
         boolean searchHotelName = false;
+        int hotelNum = -1;
         for (int i = 0; i < hotels.size(); i++) {
             searchHotelName = checkContains(nyLeit.getSearchString(), hotels.get(i), searchHotelName);
+            hotelNum = i;
         }
         
         if (searchHotelName) {
-            // Temporary "hardcoded" SELECT command to have a placeholder while
-            // other parts are worked on, only checks for start date and returns
-            // the room numbers
-            // query = "SELECT RoomNumber FROM " + searchStringText + "RoomsAvailable" + startMonth + "19" + " WHERE RoomSize = " + persons + " AND Date" + startDay + " = 1;";
-            query = "SELECT Name, AreaCode FROM " + searchStringText + "RoomsAvailable" + startMonth + "19" + " WHERE RoomSize = " + persons + " AND Date" + startDay + " = 1;";
+            for (int i = 0; i < availableRooms.size(); i++)
+            {
+                query = "SELECT Name, AreaCode FROM Hotels WHERE Name = " + availableRooms.get(i)[0] + " AND AreaCode = " + availableRooms.get(i)[1] + " AND Name = ";
+                switch (hotelNum) {
+                    case 0: case 1:
+                        hotelNum = 1;
+                        break;
+                    case 2: case 3: case 4: case 5:
+                        hotelNum = 3;
+                        break;
+                    case 6: case 7:
+                        hotelNum = 6;
+                        break;
+                    case 8: case 9:
+                        hotelNum = 8;
+                        break;
+                    case 10: case 11:
+                        hotelNum = 10;
+                        break;
+                    case 12: case 13:
+                        hotelNum = 12;
+                        break;
+                    case 14: case 15:
+                        hotelNum = 14;
+                        break;
+                    case 16: case 17: case 18: case 19:
+                        hotelNum = 16;
+                        break;
+                    case 20: case 21:
+                        hotelNum = 20;
+                        break;
+                    case 22: case 23: case 24: case 25:
+                        hotelNum = 22;
+                        break;
+                }
+                query += hotels.get(hotelNum) + ";";
+                queryList.add(query);
+            }
         }
         else {
-            query += "Name, AreaCode FROM Hotels WHERE ";
-            
             for (int i = 0; i < cities.size(); i++) {
                 if (checkContains(nyLeit.getSearchString(), cities.get(i), false)) {
                     switch (i) {
@@ -563,27 +581,38 @@ public class DatabaseConnection {
                 }
             }
             
-            if (!postCodes.isEmpty()) {
-                for (int i = 0; i < postCodes.size(); i++) {
-                    query += ("AreaCode = " + postCodes.get(i));
-                    if (i < postCodes.size() - 1) {
-                        query += " OR ";
+            if (!postCodes.isEmpty()) 
+            {
+                for (int i = 0; i < availableRooms.size(); i++)
+                {
+                    for (int j = 0; j < postCodes.size(); j++)
+                    {
+                        query = "SELECT Name, AreaCode FROM Hotels WHERE Name = " + availableRooms.get(i)[0] + " AND AreaCode = " + availableRooms.get(i)[1];
+                        query += ("AND (AreaCode = " + postCodes.get(j));
+                        if (j < postCodes.size() - 1)
+                        {
+                            query += " OR ";
+                        }
+                        else
+                        {
+                            query += ");";
+                        }
+                        queryList.add(query);
                     }
                 }
-                // Missing here is the check for available rooms at the requested
-                // dates at each hotel, this will be added soon, hardcode end to
-                // SELECT statement until then
-                query += ";";
             }
-            else {
-                // Same as above, here will be a check for room availability at
-                // each hotel that meets the search criteria for each requested
-                // date
+            else
+            {
+                for (int i = 0; i < availableRooms.size(); i++)
+                {
+                    query = "SELECT Name, AreaCode FROM Hotels WHERE Name = " + availableRooms.get(i)[0] + " AND AreaCode = " + availableRooms.get(i)[1] + ";";
+                    queryList.add(query);
+                }
             }
         }
         
-        System.out.println(query);
-        return query;
+        //System.out.println(query);
+        return queryList;
     }
     
     private boolean checkContains(String a, String b, boolean check) {
@@ -598,12 +627,232 @@ public class DatabaseConnection {
         }
     }
     
+    private ArrayList<String> makeDateNumberQueryString(leit nyLeit)
+    {
+        ArrayList<String> possibleHotels = new ArrayList<>();
+        possibleHotels.add(hotels.get(1) + "RoomsAvailable");
+        possibleHotels.add(hotels.get(4) + "RoomsAvailable");
+        possibleHotels.add(hotels.get(7) + "RoomsAvailable");
+        possibleHotels.add(hotels.get(9) + "RoomsAvailable");
+        possibleHotels.add(hotels.get(11) + "RoomsAvailable");
+        possibleHotels.add(hotels.get(13) + "RoomsAvailable");
+        possibleHotels.add(hotels.get(15) + "RoomsAvailable");
+        possibleHotels.add(hotels.get(18) + "RoomsAvailable");
+        possibleHotels.add(hotels.get(21) + "RoomsAvailable");
+        possibleHotels.add(hotels.get(24) + "RoomsAvailable");
+        
+        String query = "SELECT DISTINCT Name, AreaCode FROM ";
+        ArrayList<String> queryList = new ArrayList<>();
+        
+        int people;
+        int persons = nyLeit.getAdultGuests() + nyLeit.getChildrenGuests();
+        if (persons == 3)
+        {
+            people = 4;
+        }
+        else
+        {
+            people = persons;
+        }
+        String queryPeople = "WHERE RoomSize = " + people + " ";
+        
+        ArrayList<String> months = new ArrayList<>();
+        ArrayList<String> days = new ArrayList<>();
+        String [] startDateParts = nyLeit.getStartDate().split("-");
+        String startYear = startDateParts[0];
+        String startMonth = startDateParts[1];
+        String startDay;
+        if(!"10".equals(startDateParts[2])){
+            startDay = startDateParts[2].replaceFirst("0", "");
+        }
+        else {
+            startDay = startDateParts[2];
+        }
+        
+        String [] endDateParts = nyLeit.getEndDate().split("-");
+        String endYear = endDateParts[0];
+        String endMonth = endDateParts[1];
+        String endDay = endDateParts[2];
+        
+        // Fill up the ArrayLists to loop through all requested dates
+        int startM = Integer.parseInt(startMonth);
+        int endM = Integer.parseInt(endMonth);
+        if (startM < endM)
+        {
+            for (int i = startM; i <= endM; i++)
+            {
+                if (i < 10)
+                {
+                    months.add("0" + i);
+                }
+                else
+                {
+                    months.add("" + i);
+                }
+            }
+        }
+        
+        int startD = Integer.parseInt(startDay);
+        int endD = Integer.parseInt(endDay);
+        for (int i = startM; i <= endM; i++)
+        {
+            if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12)
+            {
+                if (startM == endM)
+                {
+                    for (int j = startD; j <= endD; j++)
+                    {
+                        days.add("Date" + j);
+                    }
+                }
+                else
+                {
+                    if (i == startM)
+                    {
+                        for (int j = startD; j <= 31; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else if (i == endM)
+                    {
+                        for (int j = 1; j <= endD; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 1; j <= 31; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                }
+            }
+            else if (i == 4 || i == 6 || i == 9 || i == 11)
+            {
+                if (startM == endM)
+                {
+                    for (int j = startD; j <= endD; j++)
+                    {
+                        days.add("Date" + j);
+                    }
+                }
+                else
+                {
+                    if (i == startM)
+                    {
+                        for (int j = startD; j <= 30; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else if (i == endM)
+                    {
+                        for (int j = 1; j <= endD; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 1; j <= 30; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (startM == endM)
+                {
+                    for (int j = startD; j <= endD; j++)
+                    {
+                        days.add("Date" + j);
+                    }
+                }
+                else
+                {
+                    if (i == startM)
+                    {
+                        for (int j = startD; j <= 28; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else if (i == endM)
+                    {
+                        for (int j = 1; j <= endD; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 1; j <= 28; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                }
+            }
+        }
+        
+        for (int i = 0; i < possibleHotels.size(); i++)
+        {
+            for (int j = 0; j < months.size(); j++)
+            {
+                query += possibleHotels.get(i) + months.get(j) + "19";
+                if (j == months.size() - 1)
+                {
+                    query += " " + queryPeople;
+                }
+                else
+                {
+                    query += ", ";
+                }
+            }
+            queryList.add(query);
+        }
+        
+        for (int i = 0; i < queryList.size(); i++)
+        {
+            String temp = queryList.get(i);
+            queryList.remove(i);
+            int monthIndex = 0;
+            int possibleHotelsIndex = 0;
+            for (int j = 0; j < days.size(); j++)
+            {
+                temp += "AND " + possibleHotels.get(possibleHotelsIndex) + months.get(monthIndex) + "19." + days.get(j) + " = 1";
+                if (days.get(j + 1) == "Date1")
+                {
+                    monthIndex++;
+                }
+                if (j == days.size() - 1)
+                {
+                    temp += ";";
+                    possibleHotelsIndex++;
+                }
+                else
+                {
+                    temp += " ";
+                }
+            }
+            queryList.add(i, temp);
+        }
+        
+        return queryList;
+    }
+    
     /**
      * Opnar tengingu við gagnagrunn.
      * @param query 
      */
     public ArrayList<String[]> openConnection(leit nyLeit) {
-        String query = makeQueryString(nyLeit);
+        ArrayList<String> queryDatesNumbers = makeDateNumberQueryString(nyLeit);
+        ArrayList<String[]> roomResults = new ArrayList<>();
         ArrayList<String[]> tempResults = new ArrayList<>();
         ArrayList<String[]> results = new ArrayList<>();
         String[] output = new String[2];
@@ -617,14 +866,32 @@ public class DatabaseConnection {
             conn = DriverManager.getConnection(url);
             System.out.println("Tenging Virk");
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()){
-                output[0] = rs.getString(1);
-                output[1] = rs.getString(2);
-                System.out.print(output[0] + " ");
-                System.out.println(output[1]);
-                tempResults.add(output);
+            ResultSet rs;
+            for (int i = 0; i < queryDatesNumbers.size(); i++)
+            {
+                rs = stmt.executeQuery(queryDatesNumbers.get(i));
+                while (rs.next()){
+                    output[0] = rs.getString(1);
+                    output[1] = rs.getString(2);
+                    System.out.print(output[0]);
+                    System.out.println(output[1]);
+                    roomResults.add(output);
+                }
             }
+            
+            ArrayList<String> query = makeQueryString(nyLeit, roomResults);
+            for (int i = 0; i < roomResults.size(); i++)
+            {
+                rs = stmt.executeQuery(query.get(i));
+                while (rs.next()){
+                    output[0] = rs.getString(1);
+                    output[1] = rs.getString(2);
+                    System.out.print(output[0]);
+                    System.out.println(output[1]);
+                    tempResults.add(output);
+                }
+            }
+
             for (int i = 0; i < tempResults.size(); i++)
             {
                 rs = stmt.executeQuery(hotelInfo1 + tempResults.get(i)[0] + hotelInfo2 + tempResults.get(i)[1] + hotelInfo3);
