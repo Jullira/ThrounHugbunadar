@@ -69,19 +69,20 @@ public class HotelUpplController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.print(hotelNum);
-        //System.out.println(hotelNum);
+        System.out.println(selectedHotel.getDescription());
         //hotelList = lnc.getHotelList();
         //hotelNum = lnc.getNumOfClickedHotel();
         //selectedHotel = hotelList.get(hotelNum);
-        hotelName.setText(selectedHotel.getName());
-        hotelInfo.setText(selectedHotel.getDescription());
         //Image image = new Image(selectedHotel.getPictures());
         //hotelImage.setImage(image);
     }    
     
     public void setSelectedHotel(Hotel selectedHotel) {
         this.selectedHotel = selectedHotel;
+        Image image = new Image("https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg");
+        hotelImage.setImage(image);
+        hotelName.setText(selectedHotel.getName());
+        hotelInfo.setText(selectedHotel.getDescription());
     }
 
     public void setHotelNum(int hotelNum) {
