@@ -217,14 +217,13 @@ public class DatabaseConnection {
         ArrayList<String> queryList = new ArrayList<>();
         String searchStringText = nyLeit.getSearchString().replaceAll("\\s+","");
         
-        int persons = nyLeit.getAdultGuests() + nyLeit.getChildrenGuests();
+        int persons = nyLeit.getGuests();
         
         System.out.println(
             nyLeit.getSearchString() + 
             nyLeit.getStartDate() + 
             nyLeit.getEndDate() + 
-            nyLeit.getAdultGuests() + 
-            nyLeit.getChildrenGuests());
+            nyLeit.getGuests());
         
         boolean searchHotelName = false;
         int hotelNum = -1;
@@ -654,7 +653,7 @@ public class DatabaseConnection {
         ArrayList<String> queryList = new ArrayList<>();
         
         int people;
-        int persons = nyLeit.getAdultGuests() + nyLeit.getChildrenGuests();
+        int persons = nyLeit.getGuests();
         if (persons == 3)
         {
             people = 4;
@@ -881,6 +880,10 @@ public class DatabaseConnection {
         return queryList;
     }
     
+    private String makeBookingString(String hotel, int areaCode, int guests, int startDate, int endDate) {
+        return null;
+    }
+    
     /**
      * Opnar tengingu við gagnagrunn.
      * @param query 
@@ -890,7 +893,6 @@ public class DatabaseConnection {
         ArrayList<String[]> roomResults = new ArrayList<>();
         ArrayList<String[]> tempResults = new ArrayList<>();
         ArrayList<String[]> results = new ArrayList<>();
-        String[] hotelOutput = new String[13];
         Connection conn = null;
         try {
             String url = "jdbc:sqlite:dev8.db";
@@ -933,6 +935,7 @@ public class DatabaseConnection {
                 rs = stmt.executeQuery(hotelInfo1 + tempResults.get(i)[0] + hotelInfo2 + tempResults.get(i)[1] + hotelInfo3);
                 while (rs.next())
                 {
+                    String[] hotelOutput = new String[13];
                     for (int j = 0; j < hotelOutput.length; j++)
                     {
                         hotelOutput[j] = rs.getString(j + 1);
@@ -953,7 +956,24 @@ public class DatabaseConnection {
                 System.out.println(ex.getMessage());
             }
         }
+        for (int i = 0; i < results.size(); i++)
+        {
+            System.out.println(results.get(i)[0]);
+        }
         return results;
+    }
+    
+    public String openConnection(Booking nyBokun) {
+        String hotel = nyBokun.getHotel();
+        int areaCode = nyBokun.getAreaCode();
+        String customerName = nyBokun.getFullName();
+        int guests = nyBokun.getGuests();
+        int startDate = nyBokun.getStartDate();
+        int endDate = nyBokun.getEndDate();
+        
+        String bookRoom = makeBookingString(hotel, areaCode, guests, startDate, endDate);
+        
+        return null;
     }
     
 }
