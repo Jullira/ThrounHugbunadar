@@ -24,7 +24,7 @@ public class BookingController {
     
     public void newBooking(Booking nybokun) {
         DatabaseConnection dc = new DatabaseConnection();
-        dc.openConnection(nybokun);
+        //dc.openConnection(nybokun);
     }
     
 }

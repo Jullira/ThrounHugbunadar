@@ -1,245 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #dbffd1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bokunarforrit.FXMLDocumentController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: dbffd1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bokunarforrit.LeitarNidController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="267.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="738.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="97.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="150.0" minHeight="100.0" percentHeight="20.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="0.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <VBox layoutY="100.0" prefHeight="500.0" prefWidth="200.0">
+      <VBox alignment="CENTER" prefHeight="200.0" style="-fx-background-color: lightgreen;" GridPane.columnIndex="1">
          <children>
-            <Label text="Síur:">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" right="15.0" top="30.0" />
-               </VBox.margin>
-            </Label>
-            <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="200.0" text="WiFi">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="30.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="200.0" text="Sundlaug">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="30.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="200.0" text="Morgunmatur">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="30.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="200.0" text="Fatlaðir">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="30.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="200.0" text="Líkamsrækt">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="30.0" top="10.0" />
-               </VBox.margin>
-            </CheckBox>
-            <Label text="Stjörnur:">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" right="15.0" top="5.0" />
-               </VBox.margin>
-            </Label>
-            <HBox prefHeight="48.0" prefWidth="200.0">
-               <children>
-                  <RadioButton mnemonicParsing="false" text="1">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                     </HBox.margin>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="stars" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="2" toggleGroup="$stars">
-                     <HBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </HBox.margin>
-                  </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="3" toggleGroup="$stars">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                  </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="4" toggleGroup="$stars">
-                     <HBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </HBox.margin>
-                  </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="5" toggleGroup="$stars">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                     </HBox.margin>
-                  </RadioButton>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox layoutX="800.0" layoutY="100.0" prefHeight="500.0" prefWidth="200.0">
-         <children>
-            <TextField fx:id="searchString" onMouseClicked="#searchStringAction" prefHeight="30.0" promptText="Borg, bær eða nafn hótels">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
-               </VBox.margin>
-            </TextField>
-            <HBox>
-               <children>
-                  <DatePicker fx:id="startDate" prefHeight="40.0" prefWidth="70.0" promptText="Fra">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
-                     </HBox.margin>
-                  </DatePicker>
-                  <DatePicker fx:id="endDate" prefHeight="40.0" prefWidth="70.0" promptText="Til">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
-                     </HBox.margin>
-                  </DatePicker>
-               </children>
-            </HBox>
-            <HBox prefHeight="70.0" prefWidth="200.0">
-               <children>
-                  <ComboBox fx:id="adults" prefHeight="44.0" prefWidth="100.0" promptText="Fullorðnir" style="-fx-background-color: dbffd1; -fx-border-style: solid;">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="10.0" top="5.0" />
-                     </HBox.margin>
-                  </ComboBox>
-                  <ComboBox fx:id="children" prefHeight="44.0" prefWidth="80.0" promptText="Börn" style="-fx-background-color: dbffd1; -fx-border-style: solid;">
-                     <HBox.margin>
-                        <Insets bottom="5.0" right="10.0" top="5.0" />
-                     </HBox.margin>
-                  </ComboBox>
-               </children>
-            </HBox>
-            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: lightgreen; -fx-border-style: solid; -fx-border-color: grey;" text="Leita">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="50.0" right="50.0" />
-               </VBox.margin>
-            </Button>
-            <Text fx:id="errorMessage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Text>
-         </children>
-      </VBox>
-      <ScrollPane layoutX="200.0" layoutY="100.0" prefHeight="500.0" prefWidth="600.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="585.0" style="-fx-background-color: #dbffd1;">
-               <children>
-                  <HBox prefHeight="170.0" prefWidth="600.0">
-                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="170.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../images/saga.jpg" />
-                           </image>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <VBox prefHeight="200.0" prefWidth="450.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hótel Saga" wrappingWidth="369.13671875">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hótel Saga er staðsett í miðbæ Reykjavíkur og er frábært hótel í alla staði. Það ser stórt og gamalt og með fullt af flottum herbergjum." wrappingWidth="368.13671875">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="5.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="79.000 kr." textAlignment="RIGHT" wrappingWidth="354.94140625">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </VBox.margin>
-                              </Text>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox layoutY="165.0" prefHeight="170.0" prefWidth="600.0">
-                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="170.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../images/black.jpg" />
-                           </image>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <VBox prefHeight="200.0" prefWidth="450.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Black Pearl" wrappingWidth="369.13671875">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Þessar lúxusíbúðir í miðbæ Reykjavíkur eru í aðeins 350 metra fjarlægð frá gömlu höfninni í Reykjavík. Þær eru allar með ókeypis WiFi, nútímalegum innréttingum, iPad og svölum með borgarútsýni." wrappingWidth="368.13671875">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="5.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="180.000 kr." textAlignment="RIGHT" wrappingWidth="354.94140625">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" />
-                                 </VBox.margin>
-                              </Text>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
-      <HBox prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: lightgreen;">
-         <children>
-            <ImageView fx:id="banner" fitHeight="100.0" fitWidth="250.0" onMouseClicked="#bannerMouseClick" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets bottom="20.0" left="375.0" right="375.0" top="20.0" />
-               </HBox.margin>
+            <ImageView fx:id="banner" fitHeight="75.0" onMouseClicked="#bannerClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo.png" />
                </image>
             </ImageView>
          </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: lightgreen;" />
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: lightgreen;" GridPane.columnIndex="2" />
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: dbffd1; -fx-border-color: dbffd1;" GridPane.columnIndex="1" GridPane.rowIndex="1" HBox.hgrow="ALWAYS">
+         <content>
+            <HBox alignment="TOP_CENTER">
+               <children>
+                  <VBox fx:id="hotelVbox" alignment="TOP_CENTER" />
+               </children>
+            </HBox>
+         </content>
+      </ScrollPane>
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <VBox>
+               <children>
+                  <Label text="Síur:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="WiFi">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Sundlaug">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Morgunmatur">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Fatlaðir">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Líkamsrækt">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <Label text="Stjörnur:">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <ImageView fx:id="star1" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#star1MouseClicked" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/star.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="star2" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#star2MouseClicked" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/star.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="star3" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#star3MouseClicked" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/star.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="star4" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#star4MouseClicked" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/star.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="star5" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#star5MouseClicked" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/star.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <VBox alignment="TOP_CENTER" maxWidth="300.0">
+               <children>
+                  <TextField fx:id="searchString" prefHeight="40.0" prefWidth="460.0" promptText="Hvert viltu fara?">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <DatePicker fx:id="startDate" prefHeight="30.0" prefWidth="225.0" promptText="Frá">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </DatePicker>
+                        <DatePicker fx:id="endDate" prefHeight="30.0" prefWidth="225.0" promptText="Til">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </DatePicker>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ComboBox fx:id="guests" prefHeight="38.0" prefWidth="225.0" promptText="Fjöldi gesta" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-color: grey;">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: lightgreen; -fx-border-style: solid; -fx-border-color: grey;" text="Leita">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" top="30.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
       </HBox>
    </children>
-</AnchorPane>
+</GridPane>

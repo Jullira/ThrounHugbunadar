@@ -5,7 +5,6 @@
  */
 package bokunarforrit;
 
-import controller.SearchController;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -26,10 +25,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import vinnsla.leit;
-import vinnsla.DatabaseConnection;
 
 /**
  *
@@ -37,74 +34,51 @@ import vinnsla.DatabaseConnection;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
-    private TextField searchString;
+    private Label label;
     @FXML
     private ImageView banner;
+    @FXML
+    private TextField searchString;
     @FXML
     private DatePicker startDate;
     @FXML
     private DatePicker endDate;
     @FXML
+    private ComboBox<String> guests;
+    @FXML
     private Button searchButton;
-    @FXML
-    private Text errorMessage;
-    @FXML
-    private ComboBox<String> adults;
-    @FXML
-    private ComboBox<String> children;
-    
     
     private leit nyLeit = new leit();
-    
-    private SearchController newSController = new SearchController();
+    //private SearchController newSController = new SearchController();
     
     private final ObservableList<String> stringNumList = FXCollections.observableArrayList("0","1","2","3","4","5","6","7","8","9","10");
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        adults.setItems(stringNumList);
-        children.setItems(stringNumList);
+        guests.setItems(stringNumList);
+    }
+
+    @FXML
+    private void searchStringAction(MouseEvent event) {
     }
 
     @FXML
     private void searchButtonAction(ActionEvent event) throws IOException {
-        if (searchString.getText() == null || searchString.getText().trim().isEmpty()) {
-            errorMessage.setText("Þú verður að fylla út í leitarstrenginn kjáni");
-            return;
-        }
-        if (startDate.getValue() == null || endDate.getValue() == null) {
-            errorMessage.setText("Þú verður að fylla út í dagsettningarnar kjáni");
-            return;
-        }
-        if (adults.getValue() == null || children.getValue() == null) {
-            errorMessage.setText("Þú verður að fylla út fjölda fólks kjáni");
-            return;
-        }
-        
         String searchStringText = searchString.getText();
         String startDateString = dateToString(startDate);
         String endDateString = dateToString(endDate);
-        int adultInt = Integer.parseInt(adults.getValue());
-        int childrenInt = Integer.parseInt(children.getValue());
-        int persons = adultInt + childrenInt;
+        int guestsInt = Integer.parseInt(guests.getValue());
         
-        nyLeit.newSearch(searchStringText, startDateString, endDateString, adultInt, childrenInt);
+        nyLeit.newSearch(searchStringText, startDateString, endDateString, guestsInt);
         newLeitPage(event);
         
-        newSController.searchHotels(nyLeit);
+        //newSController.searchHotels(nyLeit);
         
-    }
-    
-
-    @FXML
-    private void searchStringAction(MouseEvent event) {
-        searchString.setText("");
-    }
-
-    @FXML
-    private void bannerMouseClick(MouseEvent event) throws IOException {
-        newHomePage(event);
+        System.out.println(
+            nyLeit.getSearchString() + 
+            nyLeit.getStartDate() + 
+            nyLeit.getEndDate() + 
+            nyLeit.getGuests());
     }
     
     private String dateToString(DatePicker date) {
@@ -112,24 +86,12 @@ public class FXMLDocumentController implements Initializable {
         return ld.toString();
     }
     
-    public void newHomePage(MouseEvent event) throws IOException {
-        Parent homePage = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        Scene homePageScene = new Scene(homePage);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(homePageScene);
-        stage.show();
-    }
-    
-    public void newLeitPage(ActionEvent event) throws IOException {
+    private void newLeitPage(ActionEvent event) throws IOException {
         Parent leitarNidParent = FXMLLoader.load(getClass().getResource("leitarNid.fxml"));
         Scene leitarNidScene = new Scene(leitarNidParent);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setScene(leitarNidScene);
         stage.show();
-        
-        //vinnuTextiLeit.setText(nyLeit.getSearchString());
     }
-    
-    
     
 }

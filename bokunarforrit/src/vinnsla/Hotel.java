@@ -59,6 +59,10 @@ public class Hotel {
     public int getAreaCode() {
         return areaCode;
     }
+    
+    public String getDescription() {
+        return description;
+    }
 
     public String getPictures() {
         return pictures;

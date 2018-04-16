@@ -34,8 +34,8 @@ public class SearchController {
             for(int j = 0; j<12; j++){
                arr[j] = "f";//strengjavinnsla    
             }
-            selectedHotel.newHotel(arr[0], arr[1], arr[2], Integer.parseInt(arr[3]), );
-            hotelList.set(i, selectedHotel);
+            //selectedHotel.newHotel(arr[0], arr[1], arr[2], Integer.parseInt(arr[3]), );
+            //hotelList.set(i, selectedHotel);
             //hotelList.set(i, selectedHotel.newHotel(dataHotelList.get(i, [0]),dataHotelList.get(i, [1]),dataHotelList.get(i, [2]),dataHotelList.get(i, [3]),dataHotelList.get(i, [4]),dataHotelList.get(i, [5]),dataHotelList.get(i, [6]),dataHotelList.get(i, [7]),dataHotelList.get(i, [8]),dataHotelList.get(i, [9]),dataHotelList.get(i, [10]),dataHotelList.get(i, [11]),dataHotelList.get(i, [12])));   
         }
         //return hotelList;
