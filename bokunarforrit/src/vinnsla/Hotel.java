@@ -16,7 +16,7 @@ public class Hotel {
     private int areaCode;
     private String description;
     private String pictures;
-    private int grade;
+    private double grade;
     private int starRating;
     private boolean swimmingPool;
     private boolean breakfast;
@@ -29,7 +29,7 @@ public class Hotel {
 
     
     
-    public void newHotel(String name, String address, String city, int areaCode, String description, String pictures, int grade, int starRating, boolean swimmingPool, boolean breakfast, boolean wiFi, boolean handicapFacilities, boolean gym, int hotelID, String roomTableName, String reviewTableName) {
+    public void newHotel(String name, String address, String city, int areaCode, String description, String pictures, double grade, int starRating, boolean swimmingPool, boolean breakfast, boolean wiFi, boolean handicapFacilities, boolean gym, int hotelID, String roomTableName, String reviewTableName) {
         this.name = name;
         this.address = address;
         this.city = city;
@@ -68,7 +68,7 @@ public class Hotel {
         return pictures;
     }
 
-    public int getGrade() {
+    public double getGrade() {
         return grade;
     }
 

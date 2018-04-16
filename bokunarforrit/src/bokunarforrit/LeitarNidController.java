@@ -65,10 +65,10 @@ public class LeitarNidController implements Initializable {
     
     private int numOfClickedHotel;
     private ArrayList<Hotel> hotelList = new ArrayList<>();
-    private Hotel Hotel1 = new Hotel();
-    private Hotel Hotel2 = new Hotel();
-    private Hotel Hotel3 = new Hotel();
-    private Hotel Hotel4 = new Hotel();
+    //private Hotel Hotel1 = new Hotel();
+    //private Hotel Hotel2 = new Hotel();
+    //private Hotel Hotel3 = new Hotel();
+    //private Hotel Hotel4 = new Hotel();
     private Hotel selectedHotel = new Hotel();
     
     /**
@@ -78,13 +78,9 @@ public class LeitarNidController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        createFakeHotelList();
-        int n = 4;
-        for (int i=0; i<n; i++) {
-            newHotelHBox(i);
-        }
+        
     }
-    
+    /*
     private void createFakeHotelList() {
         Hotel1.newHotel("name", "address", "city", 101, "description", "https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg", 10 ,5, true, true, true, true, true, 1, "roomTableName", "reviewTableName");
         hotelList.add(Hotel1);
@@ -95,8 +91,10 @@ public class LeitarNidController implements Initializable {
         Hotel4.newHotel("name", "address", "city", 101, "description", "https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg", 10 ,5, true, true, true, true, true, 1, "roomTableName", "reviewTableName");
         hotelList.add(Hotel4);
     }
+    */
     
     private void newHotelHBox(int hotelNum) {
+        System.out.print(hotelList.get(0));
         selectedHotel = hotelList.get(hotelNum);
             Text hotelText = new Text(selectedHotel.getName());
             Label hotelInfo = new Label(selectedHotel.getDescription());
@@ -106,7 +104,8 @@ public class LeitarNidController implements Initializable {
             VBox.setMargin(hotelText, new Insets(10,10,10,10));
             VBox.setMargin(hotelInfo, new Insets(0,10,10,10));
             vboxHotel.getChildren().addAll(hotelText, hotelInfo);
-            ImageView img = new ImageView(selectedHotel.getPictures());
+            //ImageView img = new ImageView(selectedHotel.getPictures());
+            ImageView img = new ImageView("https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg");
             img.setFitWidth(200);
             img.setFitHeight(150);
             HBox hbox = new HBox();
@@ -137,7 +136,7 @@ public class LeitarNidController implements Initializable {
     }
     
     private void newHotelPage(MouseEvent event) throws IOException {
-        /*
+        
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("hotelUppl.fxml"));
         loader.load();
@@ -146,17 +145,26 @@ public class LeitarNidController implements Initializable {
         stage.setScene(new Scene(p));
         
         HotelUpplController display = loader.getController();
-        display.setHotelNum(10);
-        //System.out.print(selectedHotel.getName());
+        display.setSelectedHotel(selectedHotel);
+        System.out.print(selectedHotel.getName());
         
         stage.show();
-        */
+        /*
         Parent homePage = FXMLLoader.load(getClass().getResource("hotelUppl.fxml"));
         Scene homePageScene = new Scene(homePage);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(homePageScene);
         stage.show();
+*/
         
+    }
+
+    public void setHotelList(ArrayList<Hotel> hotelList) {
+        this.hotelList = hotelList;
+        int n = hotelList.size();
+        for (int i=0; i<n; i++) {
+            newHotelHBox(i);
+        }
     }
     
     public ArrayList<Hotel> getHotelList() {

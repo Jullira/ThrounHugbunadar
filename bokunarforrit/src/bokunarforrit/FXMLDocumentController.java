@@ -27,6 +27,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import vinnsla.leit;
+import controller.SearchController;
+import java.util.ArrayList;
+import vinnsla.Hotel;
 
 /**
  *
@@ -49,7 +52,9 @@ public class FXMLDocumentController implements Initializable {
     private Button searchButton;
     
     private leit nyLeit = new leit();
-    //private SearchController newSController = new SearchController();
+    private SearchController newSController = new SearchController();
+    
+    private ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
     
     private final ObservableList<String> stringNumList = FXCollections.observableArrayList("0","1","2","3","4","5","6","7","8","9","10");
     
@@ -70,9 +75,10 @@ public class FXMLDocumentController implements Initializable {
         int guestsInt = Integer.parseInt(guests.getValue());
         
         nyLeit.newSearch(searchStringText, startDateString, endDateString, guestsInt);
+        hotelList = newSController.searchHotels(nyLeit);
         newLeitPage(event);
         
-        //newSController.searchHotels(nyLeit);
+        
         
         System.out.println(
             nyLeit.getSearchString() + 
@@ -86,11 +92,17 @@ public class FXMLDocumentController implements Initializable {
         return ld.toString();
     }
     
-    private void newLeitPage(ActionEvent event) throws IOException {
-        Parent leitarNidParent = FXMLLoader.load(getClass().getResource("leitarNid.fxml"));
-        Scene leitarNidScene = new Scene(leitarNidParent);
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(leitarNidScene);
+    private void newLeitPage(ActionEvent event) throws IOException {        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("leitarNid.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        
+        LeitarNidController display = loader.getController();
+        display.setHotelList(hotelList);
+        
         stage.show();
     }
     
