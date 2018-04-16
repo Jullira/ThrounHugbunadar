@@ -229,7 +229,11 @@ public class DatabaseConnection {
         int hotelNum = -1;
         for (int i = 0; i < hotels.size(); i++) {
             searchHotelName = checkContains(nyLeit.getSearchString(), hotels.get(i), searchHotelName);
-            hotelNum = i;
+            if (searchHotelName)
+            {
+                hotelNum = i;
+                break;
+            }
         }
         
         if (searchHotelName) {
