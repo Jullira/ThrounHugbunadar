@@ -131,7 +131,7 @@ public class LeitarNidController implements Initializable {
     }
     
     private void newHotelScene(int hotelNum, MouseEvent event) throws IOException {
-        System.out.println("newHotelScene #" + hotelNum);
+        //System.out.println("newHotelScene #" + hotelNum);
         newHotelPage(event);
     }
     

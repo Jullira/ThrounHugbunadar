@@ -5,15 +5,20 @@
  */
 package bokunarforrit;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -56,9 +61,24 @@ public class BokunUpplController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
+    private void confirmButtonClicked(ActionEvent event) throws IOException {
+        confirmHandler(event);
+    }
+    
     @FXML
-    private void confirmHandler(ActionEvent event) {
+    private void confirmHandler(ActionEvent event) throws IOException{
+        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("stadfesting.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        
+        StadfestingController display = loader.getController();
+        stage.show();
+        
     }
     
 }

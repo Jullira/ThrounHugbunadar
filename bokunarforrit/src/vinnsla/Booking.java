@@ -15,8 +15,7 @@ public class Booking {
     private String hotel;
     private int startDate;
     private int endDate;
-    private int adultGuests;
-    private int childrenGuests;
+    private int Guests;
     
     // Information about the costumer
     private String fullName;
@@ -27,12 +26,11 @@ public class Booking {
     private String phoneNumber; 
     private String email;
 
-    public Booking(String hotel, int startDate, int endDate, int adultGuests, int childrenGuests, String fullName, String address, int zipCode, String city, String phoneNumber, String email, String country) {
+    public Booking(String hotel, int startDate, int endDate, int Guests, String fullName, String address, int zipCode, String city, String phoneNumber, String email, String country) {
         this.hotel = hotel;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.adultGuests = adultGuests;
-        this.childrenGuests = childrenGuests;
+        this.Guests = Guests;
         this.fullName = fullName;
         this.address = address;
         this.zipCode = zipCode;
@@ -55,14 +53,9 @@ public class Booking {
         return endDate;
     }
     
-    public int getAdultGuests() {
-        return adultGuests;
+    public int getGuests() {
+        return Guests;
     }
-
-    public int getChildrenGuests() {
-        return childrenGuests;
-    }
-    
     
     public String getFullName() {
         return fullName;

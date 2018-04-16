@@ -5,12 +5,17 @@
  */
 package bokunarforrit;
 
+import java.awt.Desktop.Action;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -18,7 +23,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import vinnsla.Hotel;
 
 /**
@@ -89,8 +96,24 @@ public class HotelUpplController implements Initializable {
         this.hotelNum = hotelNum;
     }
     
+    
+     private void newBookingScene( ActionEvent event) throws IOException {
+        bookButtonAction(event);
+    }
+     
     @FXML
-    private void bookButtonAction(ActionEvent event) {
+    private void bookButtonAction(ActionEvent event) throws IOException {
+        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("bokunUppl.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        
+        BokunUpplController display = loader.getController();
+        
+        stage.show();
     }
     
 }
