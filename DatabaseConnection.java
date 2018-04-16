@@ -20,7 +20,7 @@ public class DatabaseConnection {
     
     private final ArrayList<String> hotels = new ArrayList<>();
     private final ArrayList<String> cities = new ArrayList<>();
-    private final ArrayList<Integer> postCodes = new ArrayList<>();
+    private ArrayList<Integer> postCodes = new ArrayList<>();
     
     public DatabaseConnection()
     {
@@ -236,7 +236,7 @@ public class DatabaseConnection {
         if (searchHotelName) {
             for (int i = 0; i < availableRooms.size(); i++)
             {
-                query = "SELECT Name, AreaCode FROM Hotels WHERE Name = " + availableRooms.get(i)[0] + " AND AreaCode = " + availableRooms.get(i)[1] + " AND Name = ";
+                query = "SELECT Name, AreaCode FROM Hotels WHERE Name = '" + availableRooms.get(i)[0] + "' AND AreaCode = " + availableRooms.get(i)[1] + " AND Name = '";
                 switch (hotelNum) {
                     case 0: case 1:
                         hotelNum = 1;
@@ -269,7 +269,7 @@ public class DatabaseConnection {
                         hotelNum = 22;
                         break;
                 }
-                query += hotels.get(hotelNum) + ";";
+                query += hotels.get(hotelNum) + "';";
                 queryList.add(query);
             }
         }
@@ -585,32 +585,37 @@ public class DatabaseConnection {
             {
                 for (int i = 0; i < availableRooms.size(); i++)
                 {
+                    query = "SELECT Name, AreaCode FROM Hotels WHERE Name = '" + availableRooms.get(i)[0] + "' AND AreaCode = " + availableRooms.get(i)[1];
+                    query += " AND (AreaCode = ";
                     for (int j = 0; j < postCodes.size(); j++)
                     {
-                        query = "SELECT Name, AreaCode FROM Hotels WHERE Name = " + availableRooms.get(i)[0] + " AND AreaCode = " + availableRooms.get(i)[1];
-                        query += ("AND (AreaCode = " + postCodes.get(j));
+                        query += postCodes.get(j);
                         if (j < postCodes.size() - 1)
                         {
-                            query += " OR ";
+                            query += " OR AreaCode = ";
                         }
                         else
                         {
                             query += ");";
                         }
-                        queryList.add(query);
                     }
+                    queryList.add(query);
                 }
             }
             else
             {
                 for (int i = 0; i < availableRooms.size(); i++)
                 {
-                    query = "SELECT Name, AreaCode FROM Hotels WHERE Name = " + availableRooms.get(i)[0] + " AND AreaCode = " + availableRooms.get(i)[1] + ";";
+                    query = "SELECT Name, AreaCode FROM Hotels WHERE Name = '" + availableRooms.get(i)[0] + "' AND AreaCode = " + availableRooms.get(i)[1] + ";";
                     queryList.add(query);
                 }
             }
         }
         
+        for (int i = 0; i < queryList.size(); i++)
+        {
+            System.out.println(queryList.get(i));
+        }
         //System.out.println(query);
         return queryList;
     }
@@ -641,7 +646,7 @@ public class DatabaseConnection {
         possibleHotels.add(hotels.get(21) + "RoomsAvailable");
         possibleHotels.add(hotels.get(24) + "RoomsAvailable");
         
-        String query = "SELECT DISTINCT Name, AreaCode FROM ";
+        String query = "SELECT DISTINCT A.Name, A.AreaCode FROM ";
         ArrayList<String> queryList = new ArrayList<>();
         
         int people;
@@ -654,7 +659,7 @@ public class DatabaseConnection {
         {
             people = persons;
         }
-        String queryPeople = "WHERE RoomSize = " + people + " ";
+        String queryPeople = "WHERE A.RoomSize = " + people + " ";
         
         ArrayList<String> months = new ArrayList<>();
         ArrayList<String> days = new ArrayList<>();
@@ -677,7 +682,7 @@ public class DatabaseConnection {
         // Fill up the ArrayLists to loop through all requested dates
         int startM = Integer.parseInt(startMonth);
         int endM = Integer.parseInt(endMonth);
-        if (startM < endM)
+        if (startM <= endM)
         {
             for (int i = startM; i <= endM; i++)
             {
@@ -690,6 +695,11 @@ public class DatabaseConnection {
                     months.add("" + i);
                 }
             }
+        }
+        
+        for (int i = 0; i < months.size(); i++)
+        {
+            System.out.println(months.get(i));
         }
         
         int startD = Integer.parseInt(startDay);
@@ -802,38 +812,59 @@ public class DatabaseConnection {
         
         for (int i = 0; i < possibleHotels.size(); i++)
         {
+            String temp1 = query;
             for (int j = 0; j < months.size(); j++)
             {
-                query += possibleHotels.get(i) + months.get(j) + "19";
-                if (j == months.size() - 1)
+                if (j == 0)
                 {
-                    query += " " + queryPeople;
+                    temp1 += possibleHotels.get(i) + months.get(j) + "19 AS A";
                 }
                 else
                 {
-                    query += ", ";
+                    temp1 += possibleHotels.get(i) + months.get(j) + "19";
                 }
+                if (j == months.size() - 1)
+                {
+                    temp1 += " " + queryPeople;
+                }
+                else
+                {
+                    temp1 += ", ";
+                }
+                System.out.println(temp1);
             }
-            queryList.add(query);
+            queryList.add(temp1);
         }
         
+        int possibleHotelsIndex = 0;
         for (int i = 0; i < queryList.size(); i++)
         {
             String temp = queryList.get(i);
             queryList.remove(i);
             int monthIndex = 0;
-            int possibleHotelsIndex = 0;
             for (int j = 0; j < days.size(); j++)
             {
-                temp += "AND " + possibleHotels.get(possibleHotelsIndex) + months.get(monthIndex) + "19." + days.get(j) + " = 1";
-                if (days.get(j + 1) == "Date1")
+                //System.out.println(possibleHotels.get(possibleHotelsIndex));
+                //System.out.println(months.get(monthIndex));
+                //System.out.println(days.get(j));
+                if (monthIndex == 0)
                 {
-                    monthIndex++;
+                    temp += "AND A." + days.get(j) + " = 1";
                 }
+                else
+                {
+                    temp += "AND " + possibleHotels.get(possibleHotelsIndex) + months.get(monthIndex) + "19." + days.get(j) + " = 1";
+                }
+                System.out.println(temp);
                 if (j == days.size() - 1)
                 {
                     temp += ";";
                     possibleHotelsIndex++;
+                }
+                else if ("Date1".equals(days.get(j + 1)))
+                {
+                    monthIndex++;
+                    temp += " ";
                 }
                 else
                 {
@@ -855,7 +886,6 @@ public class DatabaseConnection {
         ArrayList<String[]> roomResults = new ArrayList<>();
         ArrayList<String[]> tempResults = new ArrayList<>();
         ArrayList<String[]> results = new ArrayList<>();
-        String[] output = new String[2];
         String[] hotelOutput = new String[13];
         Connection conn = null;
         try {
@@ -871,6 +901,7 @@ public class DatabaseConnection {
             {
                 rs = stmt.executeQuery(queryDatesNumbers.get(i));
                 while (rs.next()){
+                    String[] output = new String[2];
                     output[0] = rs.getString(1);
                     output[1] = rs.getString(2);
                     System.out.print(output[0]);
@@ -884,6 +915,7 @@ public class DatabaseConnection {
             {
                 rs = stmt.executeQuery(query.get(i));
                 while (rs.next()){
+                    String[] output = new String[2];
                     output[0] = rs.getString(1);
                     output[1] = rs.getString(2);
                     System.out.print(output[0]);
