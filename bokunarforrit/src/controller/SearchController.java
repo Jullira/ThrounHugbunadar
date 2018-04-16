@@ -21,12 +21,14 @@ public class SearchController {
     private ArrayList<Hotel> hotelList = new ArrayList<>(); 
     private Hotel selectedHotel = new Hotel();
     private String[] selectedString = new String[13];
-    //private String[] arr = new String[13]; //gæti komið out of bounds error
     
     
     public ArrayList<Hotel> searchHotels(leit nyleit) {
         DatabaseConnection dc = new DatabaseConnection();
         dataHotelList = dc.openConnection(nyleit);
+        System.out.println(dataHotelList.get(0)[0]);
+        System.out.println(dataHotelList.get(1)[0]);
+        System.out.println(dataHotelList.get(2)[0]);
         
         
         for(int i = 0; i < dataHotelList.size(); i++) {
@@ -45,6 +47,7 @@ public class SearchController {
                 "revow",
                 "review");
                 hotelList.add(selectedHotel);
+                System.out.println(selectedHotel.getName() + " - searchController");
         }
         return hotelList;
     }

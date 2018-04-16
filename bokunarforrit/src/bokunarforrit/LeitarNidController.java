@@ -164,6 +164,7 @@ public class LeitarNidController implements Initializable {
         int n = hotelList.size();
         for (int i=0; i<n; i++) {
             newHotelHBox(i);
+            System.out.println(hotelList.get(i).getName() + "aa");
         }
     }
     

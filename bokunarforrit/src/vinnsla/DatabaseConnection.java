@@ -936,8 +936,9 @@ public class DatabaseConnection {
                     {
                         hotelOutput[j] = rs.getString(j + 1);
                     }
-                    System.out.println(hotelOutput[0]);
+                    System.out.println(hotelOutput[0] + " - openconnection");
                     results.add(hotelOutput);
+                    System.out.println(results.get(i)[0] + " - openconnection2");
                 }
             }
         } catch (SQLException e) {
@@ -952,6 +953,11 @@ public class DatabaseConnection {
                 System.out.println(ex.getMessage());
             }
         }
+        System.out.println(results.get(0)[0] + " - Dbconn");
+        System.out.println(results.get(1)[0] + " - Dbconn");
+        System.out.println(results.get(2)[0] + " - Dbconn");
+        System.out.println(results.get(3)[0] + " - Dbconn");
+        System.out.println(results.get(4)[0] + " - Dbconn");
         return results;
     }
     
