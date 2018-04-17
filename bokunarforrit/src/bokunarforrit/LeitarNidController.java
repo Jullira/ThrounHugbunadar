@@ -23,6 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -65,10 +66,6 @@ public class LeitarNidController implements Initializable {
     
     private int numOfClickedHotel;
     private ArrayList<Hotel> hotelList = new ArrayList<>();
-    //private Hotel Hotel1 = new Hotel();
-    //private Hotel Hotel2 = new Hotel();
-    //private Hotel Hotel3 = new Hotel();
-    //private Hotel Hotel4 = new Hotel();
     private Hotel selectedHotel = new Hotel();
     
     /**
@@ -80,18 +77,6 @@ public class LeitarNidController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }
-    /*
-    private void createFakeHotelList() {
-        Hotel1.newHotel("name", "address", "city", 101, "description", "https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg", 10 ,5, true, true, true, true, true, 1, "roomTableName", "reviewTableName");
-        hotelList.add(Hotel1);
-        Hotel2.newHotel("name", "address", "city", 101, "description", "https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg", 10 ,5, true, true, true, true, true, 1, "roomTableName", "reviewTableName");
-        hotelList.add(Hotel2);
-        Hotel3.newHotel("name", "address", "city", 101, "description", "https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg", 10 ,5, true, true, true, true, true, 1, "roomTableName", "reviewTableName");
-        hotelList.add(Hotel3);
-        Hotel4.newHotel("name", "address", "city", 101, "description", "https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg", 10 ,5, true, true, true, true, true, 1, "roomTableName", "reviewTableName");
-        hotelList.add(Hotel4);
-    }
-    */
     
     private void newHotelHBox(int hotelNum) {
         System.out.print(hotelList.get(0));
@@ -104,8 +89,12 @@ public class LeitarNidController implements Initializable {
             VBox.setMargin(hotelText, new Insets(10,10,10,10));
             VBox.setMargin(hotelInfo, new Insets(0,10,10,10));
             vboxHotel.getChildren().addAll(hotelText, hotelInfo);
-            //ImageView img = new ImageView(selectedHotel.getPictures());
+            /*
+            Image imgage = new Image(selectedHotel.getPictures());
+            ImageView img = new ImageView(imgage);
+            */
             ImageView img = new ImageView("https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg");
+            
             img.setFitWidth(200);
             img.setFitHeight(150);
             HBox hbox = new HBox();
@@ -123,19 +112,14 @@ public class LeitarNidController implements Initializable {
         selectedHotel = hotelList.get(hotelNum);
         hbox.setOnMouseClicked((MouseEvent event) -> {
             try {
-                newHotelScene(hotelNum, event);
+                newHotelPage(hotelNum, event);
             } catch (IOException ex) {
                 Logger.getLogger(LeitarNidController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
     
-    private void newHotelScene(int hotelNum, MouseEvent event) throws IOException {
-        //System.out.println("newHotelScene #" + hotelNum);
-        newHotelPage(event);
-    }
-    
-    private void newHotelPage(MouseEvent event) throws IOException {
+    private void newHotelPage(int hotelNum, MouseEvent event) throws IOException {
         
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("hotelUppl.fxml"));
@@ -145,17 +129,10 @@ public class LeitarNidController implements Initializable {
         stage.setScene(new Scene(p));
         
         HotelUpplController display = loader.getController();
-        display.setSelectedHotel(selectedHotel);
+        display.setSelectedHotel(hotelList.get(hotelNum));
         System.out.print(selectedHotel.getName());
         
         stage.show();
-        /*
-        Parent homePage = FXMLLoader.load(getClass().getResource("hotelUppl.fxml"));
-        Scene homePageScene = new Scene(homePage);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(homePageScene);
-        stage.show();
-*/
         
     }
 
@@ -164,7 +141,6 @@ public class LeitarNidController implements Initializable {
         int n = hotelList.size();
         for (int i=0; i<n; i++) {
             newHotelHBox(i);
-            System.out.println(hotelList.get(i).getName() + "aa");
         }
     }
     

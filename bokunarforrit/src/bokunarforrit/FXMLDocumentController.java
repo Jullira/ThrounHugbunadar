@@ -103,6 +103,7 @@ public class FXMLDocumentController implements Initializable {
         LeitarNidController display = loader.getController();
         display.setHotelList(hotelList);
         
+        
         stage.show();
     }
     

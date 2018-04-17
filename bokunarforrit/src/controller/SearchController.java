@@ -19,7 +19,7 @@ public class SearchController {
     
     private ArrayList<String[]> dataHotelList = new ArrayList<>();
     private ArrayList<Hotel> hotelList = new ArrayList<>(); 
-    private Hotel selectedHotel = new Hotel();
+    //private Hotel selectedHotel = new Hotel();
     private String[] selectedString = new String[13];
     
     
@@ -30,24 +30,25 @@ public class SearchController {
         System.out.println(dataHotelList.get(1)[0]);
         System.out.println(dataHotelList.get(2)[0]);
         
-        
+        int j = 0; 
         for(int i = 0; i < dataHotelList.size(); i++) {
             selectedString = dataHotelList.get(i);
+            Hotel selectedHotel = new Hotel();
             selectedHotel.newHotel(selectedString[0], selectedString[1], 
-                selectedString[2], Integer.parseInt(selectedString[3]), 
-                selectedString[4], selectedString[5], 
-                Double.parseDouble("5"), 
-                Integer.parseInt(selectedString[7]), 
-                Boolean.parseBoolean(selectedString[8]), 
-                Boolean.parseBoolean(selectedString[9]), 
-                Boolean.parseBoolean(selectedString[10]), 
-                Boolean.parseBoolean(selectedString[11]), 
-                Boolean.parseBoolean(selectedString[12]),
-                1,
-                "revow",
-                "review");
-                hotelList.add(selectedHotel);
-                System.out.println(selectedHotel.getName() + " - searchController");
+            selectedString[2], Integer.parseInt(selectedString[3]), 
+            selectedString[4], selectedString[5], 
+            Double.parseDouble("5"), 
+            Integer.parseInt(selectedString[7]), 
+            Boolean.parseBoolean(selectedString[8]), 
+            Boolean.parseBoolean(selectedString[9]), 
+            Boolean.parseBoolean(selectedString[10]), 
+            Boolean.parseBoolean(selectedString[11]), 
+            Boolean.parseBoolean(selectedString[12]),
+            1,
+            "revow",
+            "review");
+            hotelList.add(selectedHotel);
+            j++;
         }
         return hotelList;
     }

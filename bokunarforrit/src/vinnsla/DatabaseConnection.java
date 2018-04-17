@@ -880,6 +880,10 @@ public class DatabaseConnection {
         return queryList;
     }
     
+    private String makeBookingString(String hotel, int areaCode, int guests, int startDate, int endDate) {
+        return null;
+    }
+    
     /**
      * Opnar tengingu við gagnagrunn.
      * @param query 
@@ -889,7 +893,6 @@ public class DatabaseConnection {
         ArrayList<String[]> roomResults = new ArrayList<>();
         ArrayList<String[]> tempResults = new ArrayList<>();
         ArrayList<String[]> results = new ArrayList<>();
-        String[] hotelOutput = new String[13];
         Connection conn = null;
         try {
             String url = "jdbc:sqlite:dev8.db";
@@ -932,13 +935,13 @@ public class DatabaseConnection {
                 rs = stmt.executeQuery(hotelInfo1 + tempResults.get(i)[0] + hotelInfo2 + tempResults.get(i)[1] + hotelInfo3);
                 while (rs.next())
                 {
+                    String[] hotelOutput = new String[13];
                     for (int j = 0; j < hotelOutput.length; j++)
                     {
                         hotelOutput[j] = rs.getString(j + 1);
                     }
-                    System.out.println(hotelOutput[0] + " - openconnection");
+                    System.out.println(hotelOutput[0]);
                     results.add(hotelOutput);
-                    System.out.println(results.get(i)[0] + " - openconnection2");
                 }
             }
         } catch (SQLException e) {
@@ -953,12 +956,21 @@ public class DatabaseConnection {
                 System.out.println(ex.getMessage());
             }
         }
-        System.out.println(results.get(0)[0] + " - Dbconn");
-        System.out.println(results.get(1)[0] + " - Dbconn");
-        System.out.println(results.get(2)[0] + " - Dbconn");
-        System.out.println(results.get(3)[0] + " - Dbconn");
-        System.out.println(results.get(4)[0] + " - Dbconn");
+        
         return results;
+    }
+    
+    public String openConnection(Booking nyBokun) {
+        String hotel = nyBokun.getHotel();
+        int areaCode = 101; //nyBokun.getAreaCode();
+        String customerName = nyBokun.getFullName();
+        int guests = nyBokun.getGuests();
+        int startDate = nyBokun.getStartDate();
+        int endDate = nyBokun.getEndDate();
+        
+        String bookRoom = makeBookingString(hotel, areaCode, guests, startDate, endDate);
+        
+        return null;
     }
     
 }
