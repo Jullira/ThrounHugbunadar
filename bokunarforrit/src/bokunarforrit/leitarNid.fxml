@@ -53,27 +53,27 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="WiFi">
+                  <CheckBox fx:id="wifiCB" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#wifiHandler" text="WiFi">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Sundlaug">
+                  <CheckBox fx:id="poolCB" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#poolHandler" text="Sundlaug">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Morgunmatur">
+                  <CheckBox fx:id="breakfastCB" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#breakfastHandler" text="Morgunmatur">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Fatlaðir">
+                  <CheckBox fx:id="handicapCB" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#handicapHandler" text="Fatlaðir">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Líkamsrækt">
+                  <CheckBox fx:id="gymCB" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#gymHandler" text="Líkamsrækt">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>

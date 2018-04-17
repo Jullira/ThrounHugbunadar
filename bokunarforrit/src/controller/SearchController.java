@@ -18,8 +18,7 @@ import vinnsla.Hotel;
 public class SearchController {
     
     private ArrayList<String[]> dataHotelList = new ArrayList<>();
-    private ArrayList<Hotel> hotelList = new ArrayList<>(); 
-    //private Hotel selectedHotel = new Hotel();
+    private ArrayList<Hotel> hotelList = new ArrayList<>();
     private String[] selectedString = new String[13];
     
     
@@ -30,20 +29,21 @@ public class SearchController {
         int j = 0; 
         for(int i = 0; i < dataHotelList.size(); i++) {
             selectedString = dataHotelList.get(i);
+            boolean wifi, pool, breakfast, handicap, gym; 
+            wifi = selectedString[8].equals("1"); 
+            pool = selectedString[9].equals("1"); 
+            breakfast = selectedString[10].equals("1"); 
+            handicap = selectedString[11].equals("1"); 
+            gym = selectedString[12].equals("1");
+            
             Hotel selectedHotel = new Hotel();
             selectedHotel.newHotel(selectedString[0], selectedString[1], 
             selectedString[2], Integer.parseInt(selectedString[3]), 
             selectedString[4], selectedString[5], 
             Double.parseDouble("5"), 
             Integer.parseInt(selectedString[7]), 
-            Boolean.parseBoolean(selectedString[8]), 
-            Boolean.parseBoolean(selectedString[9]), 
-            Boolean.parseBoolean(selectedString[10]), 
-            Boolean.parseBoolean(selectedString[11]), 
-            Boolean.parseBoolean(selectedString[12]),
-            1,
-            "revow",
-            "review");
+            wifi, pool, breakfast, handicap, gym,
+            1, "revow", "review");
             hotelList.add(selectedHotel);
             j++;
         }

@@ -24,6 +24,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -67,6 +68,14 @@ public class LeitarNidController implements Initializable {
     private ImageView star5;
     @FXML
     private VBox hotelVbox;
+    @FXML
+    private CheckBox wifiCB;
+    @FXML
+    private CheckBox poolCB;
+    @FXML
+    private CheckBox handicapCB;
+    @FXML
+    private CheckBox gymCB;
     
     private int numOfClickedHotel;
     private leit nyLeit = new leit();
@@ -75,8 +84,11 @@ public class LeitarNidController implements Initializable {
     private Hotel selectedHotel = new Hotel();
     private String currStartDate, currEndDate, currGuests;
     private String startDateString, endDateString;
+    private int currStarRating = 0;
     
     private final ObservableList<String> stringNumList = FXCollections.observableArrayList("0","1","2","3","4");
+    @FXML
+    private CheckBox breakfastCB;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -84,7 +96,6 @@ public class LeitarNidController implements Initializable {
     }
     
     private void newHotelHBox(int hotelNum) {
-        System.out.print(hotelList.get(0));
         selectedHotel = hotelList.get(hotelNum);
             Text hotelText = new Text(selectedHotel.getName());
             Label hotelInfo = new Label(selectedHotel.getDescription());
@@ -149,6 +160,20 @@ public class LeitarNidController implements Initializable {
         }
     }
     
+    private void filterHotelList() {
+        for (int i=0; i<hotelList.size(); i++) {
+            if (wifiCB.isSelected() && hotelList.get(i).isWiFi()==false) {
+            } else if (poolCB.isSelected() && hotelList.get(i).isSwimmingPool()==false) {
+            } else if (breakfastCB.isSelected() && hotelList.get(i).isBreakfast()==false) {
+            } else if (handicapCB.isSelected() && hotelList.get(i).isHandicapFacilities()==false) {
+            } else if (gymCB.isSelected() && hotelList.get(i).isGym()==false) {
+            } else if (currStarRating > hotelList.get(i).getStarRating()) {
+            } else {
+                newHotelHBox(i);
+            }
+        }
+    }
+    
     public void setSearchInfo(String startDate, String endDate, String guests) {
         this.currStartDate = startDate;
         this.currEndDate = endDate;
@@ -170,15 +195,21 @@ public class LeitarNidController implements Initializable {
         star3.setOpacity(0.3);
         star4.setOpacity(0.3);
         star5.setOpacity(0.3);
+        currStarRating = 1;
+        hotelVbox.getChildren().clear();
+        filterHotelList();
     }
 
     @FXML
     private void star2MouseClicked(MouseEvent event) {
         star1.setOpacity(1);
         star2.setOpacity(1);
-        star3.setOpacity(0.3) ;
+        star3.setOpacity(0.3);
         star4.setOpacity(0.3);
         star5.setOpacity(0.3);
+        currStarRating = 2;
+        hotelVbox.getChildren().clear();
+        filterHotelList();
     }
     
     @FXML
@@ -188,6 +219,9 @@ public class LeitarNidController implements Initializable {
         star3.setOpacity(1);
         star4.setOpacity(0.3);
         star5.setOpacity(0.3);
+        currStarRating = 3;
+        hotelVbox.getChildren().clear();
+        filterHotelList();
     }
 
     @FXML
@@ -197,6 +231,9 @@ public class LeitarNidController implements Initializable {
         star3.setOpacity(1);
         star4.setOpacity(1);
         star5.setOpacity(0.3);
+        currStarRating = 4;
+        hotelVbox.getChildren().clear();
+        filterHotelList();
     }
 
     @FXML
@@ -206,6 +243,9 @@ public class LeitarNidController implements Initializable {
         star3.setOpacity(1);
         star4.setOpacity(1);
         star5.setOpacity(1);
+        currStarRating = 5;
+        hotelVbox.getChildren().clear();
+        filterHotelList();
     }   
 
     @FXML
@@ -260,6 +300,36 @@ public class LeitarNidController implements Initializable {
         
         
         stage.show();
+    }
+
+    @FXML
+    private void wifiHandler(ActionEvent event) {
+        hotelVbox.getChildren().clear();
+        filterHotelList();
+    }
+
+    @FXML
+    private void poolHandler(ActionEvent event) {
+        hotelVbox.getChildren().clear();
+        filterHotelList();
+    }
+
+    @FXML
+    private void breakfastHandler(ActionEvent event) {
+        hotelVbox.getChildren().clear();
+        filterHotelList();
+    }
+
+    @FXML
+    private void handicapHandler(ActionEvent event) {
+        hotelVbox.getChildren().clear();
+        filterHotelList();
+    }
+
+    @FXML
+    private void gymHandler(ActionEvent event) {
+        hotelVbox.getChildren().clear();
+        filterHotelList();
     }
 
 }

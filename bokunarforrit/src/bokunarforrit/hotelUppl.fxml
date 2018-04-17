@@ -52,7 +52,7 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Label fx:id="hotelInfo" prefWidth="400.0" style="-fx-border-style: solid;" text="Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hót" wrapText="true">
+                  <Label fx:id="hotelInfo" style="-fx-border-style: solid;" text="Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hót" wrapText="true">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
