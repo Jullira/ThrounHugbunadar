@@ -649,7 +649,7 @@ public class DatabaseConnection {
         possibleHotels.add(hotels.get(21) + "RoomsAvailable");
         possibleHotels.add(hotels.get(24) + "RoomsAvailable");
         
-        String query = "SELECT DISTINCT A.Name, A.AreaCode FROM ";
+        String query = "SELECT DISTINCT A.Name, A.AreaCode, A.Price FROM ";
         ArrayList<String> queryList = new ArrayList<>();
         
         int people;
@@ -895,7 +895,7 @@ public class DatabaseConnection {
         ArrayList<String[]> results = new ArrayList<>();
         Connection conn = null;
         try {
-            String url = "jdbc:sqlite:dev8.db";
+            String url = "jdbc:sqlite:final.db";
             String hotelInfo1 = "SELECT * FROM Hotels WHERE Name LIKE '";
             String hotelInfo2 = "' AND AreaCode=";
             String hotelInfo3 = ";";
@@ -907,9 +907,10 @@ public class DatabaseConnection {
             {
                 rs = stmt.executeQuery(queryDatesNumbers.get(i));
                 while (rs.next()){
-                    String[] output = new String[2];
+                    String[] output = new String[3];
                     output[0] = rs.getString(1);
                     output[1] = rs.getString(2);
+                    output[2] = rs.getString(3);
                     System.out.print(output[0]);
                     System.out.println(output[1]);
                     roomResults.add(output);
@@ -921,11 +922,19 @@ public class DatabaseConnection {
             {
                 rs = stmt.executeQuery(query.get(i));
                 while (rs.next()){
-                    String[] output = new String[2];
+                    String[] output = new String[3];
                     output[0] = rs.getString(1);
                     output[1] = rs.getString(2);
+                    for (int j = 0; j < roomResults.size(); j++)
+                    {
+                        if (output[0].equals(roomResults.get(j)[0]) && output[1].equals(roomResults.get(j)[1]))
+                        {
+                            output[2] = roomResults.get(j)[2];
+                        }
+                    }
                     System.out.print(output[0]);
-                    System.out.println(output[1]);
+                    System.out.print(output[1]);
+                    System.out.println(output[2]);
                     tempResults.add(output);
                 }
             }
@@ -935,11 +944,12 @@ public class DatabaseConnection {
                 rs = stmt.executeQuery(hotelInfo1 + tempResults.get(i)[0] + hotelInfo2 + tempResults.get(i)[1] + hotelInfo3);
                 while (rs.next())
                 {
-                    String[] hotelOutput = new String[13];
-                    for (int j = 0; j < hotelOutput.length; j++)
+                    String[] hotelOutput = new String[15];
+                    for (int j = 0; j < hotelOutput.length - 1; j++)
                     {
                         hotelOutput[j] = rs.getString(j + 1);
                     }
+                    hotelOutput[14] = tempResults.get(i)[2];
                     System.out.println(hotelOutput[0]);
                     results.add(hotelOutput);
                 }
@@ -956,16 +966,13 @@ public class DatabaseConnection {
                 System.out.println(ex.getMessage());
             }
         }
-        for (int i = 0; i < results.size(); i++)
-        {
-            System.out.println(results.get(i)[0]);
-        }
+        
         return results;
     }
     
     public String openConnection(Booking nyBokun) {
         String hotel = nyBokun.getHotel();
-        int areaCode = nyBokun.getAreaCode();
+        int areaCode = 101; //nyBokun.getAreaCode();
         String customerName = nyBokun.getFullName();
         int guests = nyBokun.getGuests();
         int startDate = nyBokun.getStartDate();
