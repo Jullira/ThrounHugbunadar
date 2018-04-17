@@ -23,7 +23,7 @@
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" style="-fx-background-color: lightgreen;" GridPane.columnIndex="1">
          <children>
-            <ImageView fx:id="banner" fitHeight="75.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="banner" fitHeight="75.0" onMouseClicked="#bannerClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo.png" />
                </image>
