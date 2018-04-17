@@ -15,12 +15,18 @@ public class leit {
     private String startDate;
     private String endDate;
     private int guests;
+    private static String staticStartDate;
+    private static String staticEndDate;
+    private static int staticGuests;
     
     public void newSearch(String searchString, String startDate, String endDate, int guests) {
         this.searchString = searchString;
         this.startDate = startDate;
         this.endDate = endDate;
         this.guests = guests;
+        leit.staticGuests = guests;
+        leit.staticEndDate = endDate;
+        leit.staticStartDate = startDate;
     }
 
     public String getSearchString() {
@@ -38,6 +44,19 @@ public class leit {
     public int getGuests() {
         return guests;
     }
+
+    public static String getStaticStartDate() {
+        return staticStartDate;
+    }
+
+    public static String getStaticEndDate() {
+        return staticEndDate;
+    }
+
+    public static int getStaticGuests() {
+        return staticGuests;
+    }
+    
 }
 
     

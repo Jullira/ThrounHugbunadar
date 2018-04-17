@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -172,6 +173,19 @@ public class HotelUpplController implements Initializable {
         display.setSearchInfo(startDateString, endDateString, guests.getValue());
         
         
+        stage.show();
+    }
+    
+    @FXML
+    private void bannerClicked(MouseEvent event) throws IOException {
+        newHomePage(event);
+    }
+    
+    public void newHomePage(MouseEvent event) throws IOException {
+        Parent homePage = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Scene homePageScene = new Scene(homePage);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(homePageScene);
         stage.show();
     }
     
