@@ -26,9 +26,6 @@ public class SearchController {
     public ArrayList<Hotel> searchHotels(leit nyleit) {
         DatabaseConnection dc = new DatabaseConnection();
         dataHotelList = dc.openConnection(nyleit);
-        System.out.println(dataHotelList.get(0)[0]);
-        System.out.println(dataHotelList.get(1)[0]);
-        System.out.println(dataHotelList.get(2)[0]);
         
         int j = 0; 
         for(int i = 0; i < dataHotelList.size(); i++) {

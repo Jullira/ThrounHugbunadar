@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -27,6 +28,10 @@ public class StadfestingController implements Initializable {
 
     @FXML
     private ImageView banner;
+    @FXML
+    private Text hotelNameText;
+    
+    private String currHotelName;
 
     /**
      * Initializes the controller class.
@@ -48,5 +53,11 @@ public class StadfestingController implements Initializable {
         stage.setScene(homePageScene);
         stage.show();
     }
+    
+    public void setHotelName(String hotelName) {
+        this.currHotelName = hotelName;
+        hotelNameText.setText(currHotelName);
+    }
+    
     
 }

@@ -54,6 +54,11 @@ public class BokunUpplController implements Initializable {
     @FXML
     private Label totalPriceLabel;
 
+    private String currStartDate, currEndDate, currGuests, currHotelName;
+    @FXML
+    private Text errorMessage;
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -68,7 +73,9 @@ public class BokunUpplController implements Initializable {
     
     @FXML
     private void confirmHandler(ActionEvent event) throws IOException{
-        
+        if (nameTextField.getText().isEmpty()) {
+            errorMessage.setVisible(true);
+        } else {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("stadfesting.fxml"));
         loader.load();
@@ -77,8 +84,28 @@ public class BokunUpplController implements Initializable {
         stage.setScene(new Scene(p));
         
         StadfestingController display = loader.getController();
-        stage.show();
+        display.setHotelName(currHotelName);
         
+        stage.show();
+        }
+    }
+    
+    public void setSearchInfo(String startDate, String endDate, String guests) {
+        this.currStartDate = startDate;
+        this.currEndDate = endDate;
+        this.currGuests = guests;
+        fromDateLabel.setText(currStartDate);
+        toDateLabel.setText(currEndDate);
+        if (guests.equals(1)) {
+            numGuestsLabel.setText(currGuests + " gestur");
+        } else {
+            numGuestsLabel.setText(currGuests + " gestir");
+        }
+    }
+    
+    public void setHotelName(String hotelName) {
+        this.currHotelName = hotelName;
+        hotelNafn.setText(currHotelName);
     }
     
 }

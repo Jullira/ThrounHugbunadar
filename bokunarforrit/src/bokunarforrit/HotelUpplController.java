@@ -5,11 +5,15 @@
  */
 package bokunarforrit;
 
+import controller.SearchController;
 import java.awt.Desktop.Action;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +31,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import vinnsla.Hotel;
+import vinnsla.leit;
 
 /**
  * FXML Controller class
@@ -50,9 +55,7 @@ public class HotelUpplController implements Initializable {
     @FXML
     private DatePicker endDate;
     @FXML
-    private ComboBox<?> guests;
-    @FXML
-    private Button searchButton;
+    private ComboBox<String> guests;
     @FXML
     private Label fromDateLabel;
     @FXML
@@ -65,9 +68,15 @@ public class HotelUpplController implements Initializable {
     private Button bookButton;
     
     //private LeitarNidController lnc = new LeitarNidController();
+    private String currStartDate, currEndDate, currGuests;
     private ArrayList<Hotel> hotelList = new ArrayList<>();
     private int hotelNum;
     private Hotel selectedHotel = new Hotel();
+    private leit nyLeit = new leit();
+    private SearchController newSController = new SearchController();
+    private String startDateString, endDateString;
+    private final ObservableList<String> stringNumList = FXCollections.observableArrayList("0","1","2","3","4");
+    
     
     /**
      * Initializes the controller class.
@@ -76,12 +85,7 @@ public class HotelUpplController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(selectedHotel.getDescription());
-        //hotelList = lnc.getHotelList();
-        //hotelNum = lnc.getNumOfClickedHotel();
-        //selectedHotel = hotelList.get(hotelNum);
-        //Image image = new Image(selectedHotel.getPictures());
-        //hotelImage.setImage(image);
+        guests.setItems(stringNumList);
     }    
     
     public void setSelectedHotel(Hotel selectedHotel) {
@@ -96,6 +100,18 @@ public class HotelUpplController implements Initializable {
         this.hotelNum = hotelNum;
     }
     
+    public void setSearchInfo(String startDate, String endDate, String guests) {
+        this.currStartDate = startDate;
+        this.currEndDate = endDate;
+        this.currGuests = guests;
+        fromDateLabel.setText(currStartDate);
+        toDateLabel.setText(currEndDate);
+        if (guests.equals(1)) {
+            numGuestsLabel.setText(currGuests + " gestur");
+        } else {
+            numGuestsLabel.setText(currGuests + " gestir");
+        }
+    }
     
      private void newBookingScene( ActionEvent event) throws IOException {
         bookButtonAction(event);
@@ -112,6 +128,49 @@ public class HotelUpplController implements Initializable {
         stage.setScene(new Scene(p));
         
         BokunUpplController display = loader.getController();
+        display.setSearchInfo(currStartDate, currEndDate, currGuests);
+        display.setHotelName(selectedHotel.getName());
+        
+        stage.show();
+    }
+    
+    @FXML
+    private void searchButtonAction(ActionEvent event) throws IOException {
+        String searchStringText = searchString.getText();
+        startDateString = dateToString(startDate);
+        endDateString = dateToString(endDate);
+        int guestsInt = Integer.parseInt(guests.getValue());
+        
+        nyLeit.newSearch(searchStringText, startDateString, endDateString, guestsInt);
+        hotelList = newSController.searchHotels(nyLeit);
+        newLeitPage(event);
+        
+        
+        
+        System.out.println(
+            nyLeit.getSearchString() + 
+            nyLeit.getStartDate() + 
+            nyLeit.getEndDate() + 
+            nyLeit.getGuests());
+    }
+    
+    private String dateToString(DatePicker date) {
+        LocalDate ld = date.getValue();
+        return ld.toString();
+    }
+    
+    private void newLeitPage(ActionEvent event) throws IOException {        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("leitarNid.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        
+        LeitarNidController display = loader.getController();
+        display.setHotelList(hotelList);
+        display.setSearchInfo(startDateString, endDateString, guests.getValue());
+        
         
         stage.show();
     }

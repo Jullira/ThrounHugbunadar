@@ -51,12 +51,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button searchButton;
     
+    private String startDateString, endDateString;
     private leit nyLeit = new leit();
     private SearchController newSController = new SearchController();
-    
     private ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
-    
-    private final ObservableList<String> stringNumList = FXCollections.observableArrayList("0","1","2","3","4","5","6","7","8","9","10");
+    private final ObservableList<String> stringNumList = FXCollections.observableArrayList("0","1","2","3","4");
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,8 +69,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void searchButtonAction(ActionEvent event) throws IOException {
         String searchStringText = searchString.getText();
-        String startDateString = dateToString(startDate);
-        String endDateString = dateToString(endDate);
+        startDateString = dateToString(startDate);
+        endDateString = dateToString(endDate);
         int guestsInt = Integer.parseInt(guests.getValue());
         
         nyLeit.newSearch(searchStringText, startDateString, endDateString, guestsInt);
@@ -102,6 +101,7 @@ public class FXMLDocumentController implements Initializable {
         
         LeitarNidController display = loader.getController();
         display.setHotelList(hotelList);
+        display.setSearchInfo(startDateString, endDateString, guests.getValue());
         
         
         stage.show();

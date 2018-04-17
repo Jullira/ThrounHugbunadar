@@ -5,13 +5,18 @@
  */
 package bokunarforrit;
 
+import controller.SearchController;
 import java.io.IOException;
 import javafx.geometry.Insets;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,6 +36,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import vinnsla.Hotel;
+import vinnsla.leit;
 
 /**
  * FXML Controller class
@@ -50,8 +56,6 @@ public class LeitarNidController implements Initializable {
     @FXML
     private ComboBox<String> guests;
     @FXML
-    private Button searchButton;
-    @FXML
     private ImageView star1;
     @FXML
     private ImageView star2;
@@ -65,17 +69,18 @@ public class LeitarNidController implements Initializable {
     private VBox hotelVbox;
     
     private int numOfClickedHotel;
+    private leit nyLeit = new leit();
+    private SearchController newSController = new SearchController();
     private ArrayList<Hotel> hotelList = new ArrayList<>();
     private Hotel selectedHotel = new Hotel();
+    private String currStartDate, currEndDate, currGuests;
+    private String startDateString, endDateString;
     
-    /**
-     * Initializes the controller class.
-     * @param url
-     * @param rb
-     */
+    private final ObservableList<String> stringNumList = FXCollections.observableArrayList("0","1","2","3","4");
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        guests.setItems(stringNumList);
     }
     
     private void newHotelHBox(int hotelNum) {
@@ -130,7 +135,7 @@ public class LeitarNidController implements Initializable {
         
         HotelUpplController display = loader.getController();
         display.setSelectedHotel(hotelList.get(hotelNum));
-        System.out.print(selectedHotel.getName());
+        display.setSearchInfo(currStartDate, currEndDate, currGuests);
         
         stage.show();
         
@@ -142,6 +147,12 @@ public class LeitarNidController implements Initializable {
         for (int i=0; i<n; i++) {
             newHotelHBox(i);
         }
+    }
+    
+    public void setSearchInfo(String startDate, String endDate, String guests) {
+        this.currStartDate = startDate;
+        this.currEndDate = endDate;
+        this.currGuests = guests;
     }
     
     public ArrayList<Hotel> getHotelList() {
@@ -207,6 +218,47 @@ public class LeitarNidController implements Initializable {
         Scene homePageScene = new Scene(homePage);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(homePageScene);
+        stage.show();
+    }
+
+    @FXML
+    private void searchButtonAction(ActionEvent event) throws IOException {
+        String searchStringText = searchString.getText();
+        startDateString = dateToString(startDate);
+        endDateString = dateToString(endDate);
+        int guestsInt = Integer.parseInt(guests.getValue());
+        
+        nyLeit.newSearch(searchStringText, startDateString, endDateString, guestsInt);
+        hotelList = newSController.searchHotels(nyLeit);
+        newLeitPage(event);
+        
+        
+        
+        System.out.println(
+            nyLeit.getSearchString() + 
+            nyLeit.getStartDate() + 
+            nyLeit.getEndDate() + 
+            nyLeit.getGuests());
+    }
+    
+    private String dateToString(DatePicker date) {
+        LocalDate ld = date.getValue();
+        return ld.toString();
+    }
+    
+    private void newLeitPage(ActionEvent event) throws IOException {        
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("leitarNid.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        
+        LeitarNidController display = loader.getController();
+        display.setHotelList(hotelList);
+        display.setSearchInfo(startDateString, endDateString, guests.getValue());
+        
+        
         stage.show();
     }
 
