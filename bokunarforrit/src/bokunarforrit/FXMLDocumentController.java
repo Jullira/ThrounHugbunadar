@@ -103,7 +103,8 @@ public class FXMLDocumentController implements Initializable {
         display.setHotelList(hotelList);
         display.setSearchInfo(startDateString, endDateString, guests.getValue());
         
-        
+        ((Node)event.getSource()).getScene().getWindow().hide();
+        stage.setMaximized(true);
         stage.show();
     }
     

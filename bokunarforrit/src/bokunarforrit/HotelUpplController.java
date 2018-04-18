@@ -29,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import vinnsla.Hotel;
@@ -67,6 +68,8 @@ public class HotelUpplController implements Initializable {
     private Label totalPriceLabel;
     @FXML
     private Button bookButton;
+    @FXML
+    private VBox hotelBox;
     
     //private LeitarNidController lnc = new LeitarNidController();
     private String currStartDate, currEndDate, currGuests;
@@ -87,6 +90,7 @@ public class HotelUpplController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         guests.setItems(stringNumList);
+        //hotelImage.fitWidthProperty().bind(hotelBox.widthProperty());
     }    
     
     public void setSelectedHotel(Hotel selectedHotel) {
@@ -96,6 +100,7 @@ public class HotelUpplController implements Initializable {
         hotelImage.setImage(image);
         hotelName.setText(selectedHotel.getName());
         hotelInfo.setText(selectedHotel.getDescription());
+        //hotelImage.setFitWidth(hotelBox.getWidth());
     }
 
     public void setHotelNum(int hotelNum) {
@@ -133,6 +138,8 @@ public class HotelUpplController implements Initializable {
         display.setSearchInfo(currStartDate, currEndDate, currGuests);
         display.setHotelName(selectedHotel.getName());
         
+        ((Node)event.getSource()).getScene().getWindow().hide();
+        stage.setMaximized(true);
         stage.show();
     }
     
@@ -173,7 +180,8 @@ public class HotelUpplController implements Initializable {
         display.setHotelList(hotelList);
         display.setSearchInfo(startDateString, endDateString, guests.getValue());
         
-        
+        ((Node)event.getSource()).getScene().getWindow().hide();
+        stage.setMaximized(true);
         stage.show();
     }
     
@@ -183,10 +191,15 @@ public class HotelUpplController implements Initializable {
     }
     
     public void newHomePage(MouseEvent event) throws IOException {
-        Parent homePage = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        Scene homePageScene = new Scene(homePage);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(homePageScene);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("FXMLDocument.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        
+        ((Node)event.getSource()).getScene().getWindow().hide();
+        stage.setMaximized(true);
         stage.show();
     }
     
