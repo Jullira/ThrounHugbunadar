@@ -249,7 +249,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#confirmHandler" style="-fx-background-color: lightgreen; -fx-border-color: grey; -fx-border-style: solid;" text="Staðfesta">
+                  <Button mnemonicParsing="false" onAction="#confirmHandler" style="-fx-background-color: lightgreen; -fx-border-color: grey; -fx-border-style: solid; -fx-border-radius: 3;" text="Staðfesta">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
@@ -288,7 +288,7 @@
                                     <Insets left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </Text>
-                              <Label fx:id="fromDateLabel" style="-fx-border-style: solid; -fx-background-color: white;" text="1.jan">
+                              <Label fx:id="fromDateLabel" style="-fx-border-style: solid; -fx-background-color: white; -fx-border-radius: 3;" text="1.jan">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -311,7 +311,7 @@
                                     <Insets left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </Text>
-                              <Label fx:id="toDateLabel" style="-fx-border-style: solid; -fx-background-color: white;" text="2.jan">
+                              <Label fx:id="toDateLabel" style="-fx-border-style: solid; -fx-background-color: white; -fx-border-radius: 3;" text="2.jan">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -337,7 +337,7 @@
                         <Insets left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Text>
-                  <Label fx:id="numGuestsLabel" style="-fx-border-style: solid; -fx-background-color: white;" text="3 gestir">
+                  <Label fx:id="numGuestsLabel" style="-fx-border-style: solid; -fx-background-color: white; -fx-border-radius: 3;" text="3 gestir">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -356,7 +356,7 @@
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <Label fx:id="totalPriceLabel" style="-fx-border-style: solid; -fx-background-color: white;" text="180.00kr.-">
+                  <Label fx:id="totalPriceLabel" style="-fx-border-style: solid; -fx-background-color: white; -fx-border-radius: 3;" text="180.00kr.-">
                      <font>
                         <Font size="18.0" />
                      </font>

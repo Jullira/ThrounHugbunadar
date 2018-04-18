@@ -165,12 +165,12 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ComboBox fx:id="guests" prefHeight="38.0" prefWidth="225.0" promptText="Fjöldi gesta" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-color: grey;">
+                        <ComboBox fx:id="guests" prefHeight="38.0" prefWidth="225.0" promptText="Fjöldi gesta" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-color: grey; -fx-border-radius: 3;">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </ComboBox>
-                        <Button mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: lightgreen; -fx-border-style: solid; -fx-border-color: grey;" text="Leita">
+                        <Button mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="38.0" prefWidth="225.0" style="-fx-background-color: lightgreen; -fx-border-style: solid; -fx-border-color: grey; -fx-border-radius: 3;" text="Leita">
                            <font>
                               <Font size="16.0" />
                            </font>

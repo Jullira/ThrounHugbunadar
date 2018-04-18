@@ -84,6 +84,7 @@ public class LeitarNidController implements Initializable {
     private Hotel selectedHotel = new Hotel();
     private String currStartDate, currEndDate, currGuests;
     private String startDateString, endDateString;
+    private String totalPriceString;
     private int currStarRating = 0;
     private int numDays;
     
@@ -114,7 +115,7 @@ public class LeitarNidController implements Initializable {
             img.setFitWidth(200);
             img.setFitHeight(150);
             Text priceText = new Text(getPriceString());
-            priceText.setStyle("-fx-font-size:18");
+            priceText.setStyle("-fx-font-size:16");
             VBox vboxImg = new VBox();
             vboxImg.getChildren().addAll(img, priceText);
             VBox.setMargin(hotelText, new Insets(10,10,10,10));
@@ -151,7 +152,7 @@ public class LeitarNidController implements Initializable {
         
         HotelUpplController display = loader.getController();
         display.setSelectedHotel(hotelList.get(hotelNum));
-        display.setSearchInfo(currStartDate, currEndDate, currGuests, numDays);
+        display.setSearchInfo(currStartDate, currEndDate, currGuests, totalPriceString);
         
         ((Node)event.getSource()).getScene().getWindow().hide();
         stage.setMaximized(true);
@@ -189,15 +190,22 @@ public class LeitarNidController implements Initializable {
     }
     
     private String getPriceString() {
-         int price = selectedHotel.getPrice();
-         int totalPrice = price*numDays;
-         String totalPriceString; 
-         if (numDays == 1) {
-             totalPriceString = (totalPrice + "kr fyrir 1 dag.");
-         } else {
-             totalPriceString = (totalPrice + "kr fyrir " + numDays + " daga.");
-         }
-         return totalPriceString;
+        int priceInt = selectedHotel.getPrice()*numDays;
+        String totalPriceString = "";
+        String priceString = "" + priceInt;
+        while ((priceInt/1000)!=0) {
+            totalPriceString = "." + priceString.substring(priceString.length() - 3) + totalPriceString;
+            priceInt = priceInt/1000;
+            priceString = "" + priceInt;
+        }
+        totalPriceString = priceInt + totalPriceString;
+        this.totalPriceString = totalPriceString;
+        if (numDays == 1) {
+            totalPriceString = (totalPriceString + "kr fyrir 1 dag.");
+        } else {
+            totalPriceString = (totalPriceString + "kr fyrir " + numDays + " daga.");
+        }
+        return totalPriceString;
     }
     
     public ArrayList<Hotel> getHotelList() {

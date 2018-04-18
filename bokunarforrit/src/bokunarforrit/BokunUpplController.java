@@ -100,7 +100,7 @@ public class BokunUpplController implements Initializable {
         this.totalPrice = totalPrice;
         fromDateLabel.setText(currStartDate);
         toDateLabel.setText(currEndDate);
-        totalPriceLabel.setText(totalPrice);
+        totalPriceLabel.setText(totalPrice + "kr");
         if (guests.equals(1)) {
             numGuestsLabel.setText(currGuests + " gestur");
         } else {
