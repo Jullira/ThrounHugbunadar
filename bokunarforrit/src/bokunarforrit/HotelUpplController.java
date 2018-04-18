@@ -81,6 +81,36 @@ public class HotelUpplController implements Initializable {
     private String startDateString, endDateString;
     private int numDays;
     private final ObservableList<String> stringNumList = FXCollections.observableArrayList("0","1","2","3","4");
+    @FXML
+    private ImageView wifiTrue;
+    @FXML
+    private ImageView wifiFalse;
+    @FXML
+    private ImageView poolTrue;
+    @FXML
+    private ImageView poolFalse;
+    @FXML
+    private ImageView breakfastTrue;
+    @FXML
+    private ImageView breakfastFalse;
+    @FXML
+    private ImageView handicapTrue;
+    @FXML
+    private ImageView handicapFalse;
+    @FXML
+    private ImageView gymTrue;
+    @FXML
+    private ImageView gymFalse;
+    @FXML
+    private ImageView star1;
+    @FXML
+    private ImageView star2;
+    @FXML
+    private ImageView star3;
+    @FXML
+    private ImageView star4;
+    @FXML
+    private ImageView star5;
     
     
     /**
@@ -101,6 +131,8 @@ public class HotelUpplController implements Initializable {
         hotelImage.setImage(image);
         hotelName.setText(selectedHotel.getName());
         hotelInfo.setText(selectedHotel.getDescription());
+        setFilters();
+        setStars();
         //hotelImage.setFitWidth(hotelBox.getWidth());
     }
 
@@ -173,6 +205,74 @@ public class HotelUpplController implements Initializable {
             nyLeit.getGuests());
     }
     
+    private void setFilters() {
+        if (selectedHotel.isWiFi()) {
+            wifiTrue.setVisible(true);
+            wifiTrue.setFitWidth(30);
+        } else {
+            wifiFalse.setVisible(true);
+            wifiFalse.setFitWidth(30);
+        }
+        
+        if (selectedHotel.isSwimmingPool()) {
+            poolTrue.setVisible(true);
+            poolTrue.setFitWidth(30);
+        } else {
+            poolFalse.setVisible(true);
+            poolFalse.setFitWidth(30);
+        }
+        
+        if (selectedHotel.isBreakfast()) {
+            breakfastTrue.setVisible(true);
+            breakfastTrue.setFitWidth(30);
+        } else {
+            breakfastFalse.setVisible(true);
+            breakfastFalse.setFitWidth(30);
+        }
+        
+        if (selectedHotel.isHandicapFacilities()) {
+            handicapTrue.setVisible(true);
+            handicapTrue.setFitWidth(30);
+        } else {
+            handicapFalse.setVisible(true);
+            handicapFalse.setFitWidth(30);
+        }
+        
+        if (selectedHotel.isGym()) {
+            gymTrue.setVisible(true);
+            gymTrue.setFitWidth(30);
+        } else {
+            gymTrue.setVisible(true);
+            gymTrue.setFitWidth(30);
+        }
+    }
+    
+    private void setStars() {
+        int stars = selectedHotel.getStarRating();
+        switch(stars) {
+            case 1: star1.setFitWidth(30);
+                    break;
+            case 2: star1.setFitWidth(30); 
+                    star2.setFitWidth(30);
+                    break;
+            case 3: star1.setFitWidth(30); 
+                    star2.setFitWidth(30); 
+                    star3.setFitWidth(30);
+                    break;
+            case 4: star1.setFitWidth(30); 
+                    star2.setFitWidth(30);
+                    star3.setFitWidth(30); 
+                    star4.setFitWidth(30);
+                    break;
+            case 5: star1.setFitWidth(30); 
+                    star2.setFitWidth(30);
+                    star3.setFitWidth(30);
+                    star4.setFitWidth(30); 
+                    star5.setFitWidth(30);
+                    break;
+            }
+        }
+    
     private String dateToString(DatePicker date) {
         LocalDate ld = date.getValue();
         return ld.toString();
@@ -187,8 +287,8 @@ public class HotelUpplController implements Initializable {
         stage.setScene(new Scene(p));
         
         LeitarNidController display = loader.getController();
-        display.setHotelList(hotelList);
         display.setSearchInfo(startDateString, endDateString, guests.getValue(), numDays);
+        display.setHotelList(hotelList);
         
         ((Node)event.getSource()).getScene().getWindow().hide();
         stage.setMaximized(true);

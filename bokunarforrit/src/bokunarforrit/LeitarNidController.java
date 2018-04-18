@@ -320,8 +320,8 @@ public class LeitarNidController implements Initializable {
         stage.setScene(new Scene(p));
         
         LeitarNidController display = loader.getController();
-        display.setHotelList(hotelList);
         display.setSearchInfo(startDateString, endDateString, guests.getValue(), numDays);
+        display.setHotelList(hotelList);
         
         ((Node)event.getSource()).getScene().getWindow().hide();
         stage.setMaximized(true);

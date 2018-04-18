@@ -41,14 +41,68 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Text fx:id="hotelName" strokeType="OUTSIDE" strokeWidth="0.0" text="Hótel nafn">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
+                  <VBox alignment="TOP_CENTER">
+                     <children>
+                        <Text fx:id="hotelName" strokeType="OUTSIDE" strokeWidth="0.0" text="Hótel nafn">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+                           </HBox.margin>
+                        </Text>
+                        <HBox alignment="TOP_CENTER">
+                           <children>
+                              <ImageView fx:id="star1" fitWidth="1.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/star.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="star2" fitWidth="1.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/star.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="star3" fitWidth="1.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/star.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="star4" fitWidth="1.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/star.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="star5" fitWidth="1.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/star.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
                   <Label fx:id="hotelInfo" maxWidth="550.0" style="-fx-border-style: solid;" text="Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hót" wrapText="true">
                      <opaqueInsets>
                         <Insets />
@@ -57,6 +111,135 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Label>
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wifi">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <ImageView fx:id="wifiTrue" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/true.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="wifiFalse" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/false.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sundlaug">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <ImageView fx:id="poolTrue" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/true.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="poolFalse" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/false.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Morgunmatur">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <ImageView fx:id="breakfastTrue" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/true.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="breakfastFalse" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/false.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fatlaðir">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <ImageView fx:id="handicapTrue" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/true.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="handicapFalse" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/false.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Líkamsrækt">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <ImageView fx:id="gymTrue" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/true.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="gymFalse" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/false.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children></HBox>
