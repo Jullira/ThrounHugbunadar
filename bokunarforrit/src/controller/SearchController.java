@@ -57,6 +57,7 @@ public class SearchController {
                     "roomTableName",
                     "reviewTableName");
             hotelList.add(selectedHotel);
+            System.out.println(selectedHotel.getPrice());
             j++;
         }
         return hotelList;

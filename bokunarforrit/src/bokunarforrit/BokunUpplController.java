@@ -54,10 +54,10 @@ public class BokunUpplController implements Initializable {
     private Label numGuestsLabel;
     @FXML
     private Label totalPriceLabel;
-
-    private String currStartDate, currEndDate, currGuests, currHotelName;
     @FXML
     private Text errorMessage;
+
+    private String currStartDate, currEndDate, currGuests, currHotelName, totalPrice;
     
     
     /**
@@ -93,12 +93,14 @@ public class BokunUpplController implements Initializable {
         }
     }
     
-    public void setSearchInfo(String startDate, String endDate, String guests) {
+    public void setSearchInfo(String startDate, String endDate, String guests, String totalPrice) {
         this.currStartDate = startDate;
         this.currEndDate = endDate;
         this.currGuests = guests;
+        this.totalPrice = totalPrice;
         fromDateLabel.setText(currStartDate);
         toDateLabel.setText(currEndDate);
+        totalPriceLabel.setText(totalPrice);
         if (guests.equals(1)) {
             numGuestsLabel.setText(currGuests + " gestur");
         } else {

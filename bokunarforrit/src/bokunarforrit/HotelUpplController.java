@@ -79,6 +79,7 @@ public class HotelUpplController implements Initializable {
     private leit nyLeit = new leit();
     private SearchController newSController = new SearchController();
     private String startDateString, endDateString;
+    private int numDays;
     private final ObservableList<String> stringNumList = FXCollections.observableArrayList("0","1","2","3","4");
     
     
@@ -107,10 +108,11 @@ public class HotelUpplController implements Initializable {
         this.hotelNum = hotelNum;
     }
     
-    public void setSearchInfo(String startDate, String endDate, String guests) {
+    public void setSearchInfo(String startDate, String endDate, String guests, int numDays) {
         this.currStartDate = startDate;
         this.currEndDate = endDate;
         this.currGuests = guests;
+        this.numDays = numDays;
         fromDateLabel.setText(currStartDate);
         toDateLabel.setText(currEndDate);
         if (guests.equals("1")) {
@@ -118,6 +120,14 @@ public class HotelUpplController implements Initializable {
         } else {
             numGuestsLabel.setText(currGuests + " gestir");
         }
+        totalPriceLabel.setText(getPrice());
+    }
+    
+    private String getPrice() {
+         int price = selectedHotel.getPrice();
+         int totalPrice = price*numDays;
+         String totalPriceString = (totalPrice + "kr");
+         return totalPriceString;
     }
     
      private void newBookingScene( ActionEvent event) throws IOException {
@@ -135,7 +145,7 @@ public class HotelUpplController implements Initializable {
         stage.setScene(new Scene(p));
         
         BokunUpplController display = loader.getController();
-        display.setSearchInfo(currStartDate, currEndDate, currGuests);
+        display.setSearchInfo(currStartDate, currEndDate, currGuests, getPrice());
         display.setHotelName(selectedHotel.getName());
         
         ((Node)event.getSource()).getScene().getWindow().hide();
@@ -178,7 +188,7 @@ public class HotelUpplController implements Initializable {
         
         LeitarNidController display = loader.getController();
         display.setHotelList(hotelList);
-        display.setSearchInfo(startDateString, endDateString, guests.getValue());
+        display.setSearchInfo(startDateString, endDateString, guests.getValue(), numDays);
         
         ((Node)event.getSource()).getScene().getWindow().hide();
         stage.setMaximized(true);

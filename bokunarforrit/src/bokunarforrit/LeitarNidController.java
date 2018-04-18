@@ -85,6 +85,7 @@ public class LeitarNidController implements Initializable {
     private String currStartDate, currEndDate, currGuests;
     private String startDateString, endDateString;
     private int currStarRating = 0;
+    private int numDays;
     
     private final ObservableList<String> stringNumList = FXCollections.observableArrayList("0","1","2","3","4");
     @FXML
@@ -98,6 +99,7 @@ public class LeitarNidController implements Initializable {
     private void newHotelHBox(int hotelNum) {
         selectedHotel = hotelList.get(hotelNum);
             Text hotelText = new Text(selectedHotel.getName());
+            hotelText.setStyle("-fx-font-size:20");
             Label hotelInfo = new Label(selectedHotel.getDescription());
             hotelInfo.setWrapText(true);
             hotelInfo.setMaxWidth(300);
@@ -111,8 +113,13 @@ public class LeitarNidController implements Initializable {
             
             img.setFitWidth(200);
             img.setFitHeight(150);
+            Text priceText = new Text(getPriceString());
+            priceText.setStyle("-fx-font-size:18");
+            VBox vboxImg = new VBox();
+            vboxImg.getChildren().addAll(img, priceText);
+            VBox.setMargin(hotelText, new Insets(10,10,10,10));
             HBox hbox = new HBox();
-            hbox.getChildren().addAll(vboxHotel, img);
+            hbox.getChildren().addAll(vboxHotel, vboxImg);
             HBox.setMargin(img, new Insets(10,10,10,10));
             hbox.setStyle("-fx-padding: 10;" + "-fx-border-style: solid inside;"
              + "-fx-border-width: 2;" + "-fx-border-insets: 5;"
@@ -144,7 +151,7 @@ public class LeitarNidController implements Initializable {
         
         HotelUpplController display = loader.getController();
         display.setSelectedHotel(hotelList.get(hotelNum));
-        display.setSearchInfo(currStartDate, currEndDate, currGuests);
+        display.setSearchInfo(currStartDate, currEndDate, currGuests, numDays);
         
         ((Node)event.getSource()).getScene().getWindow().hide();
         stage.setMaximized(true);
@@ -174,10 +181,23 @@ public class LeitarNidController implements Initializable {
         }
     }
     
-    public void setSearchInfo(String startDate, String endDate, String guests) {
+    public void setSearchInfo(String startDate, String endDate, String guests, int numDays) {
         this.currStartDate = startDate;
         this.currEndDate = endDate;
         this.currGuests = guests;
+        this.numDays = numDays;
+    }
+    
+    private String getPriceString() {
+         int price = selectedHotel.getPrice();
+         int totalPrice = price*numDays;
+         String totalPriceString; 
+         if (numDays == 1) {
+             totalPriceString = (totalPrice + "kr fyrir 1 dag.");
+         } else {
+             totalPriceString = (totalPrice + "kr fyrir " + numDays + " daga.");
+         }
+         return totalPriceString;
     }
     
     public ArrayList<Hotel> getHotelList() {
@@ -301,7 +321,7 @@ public class LeitarNidController implements Initializable {
         
         LeitarNidController display = loader.getController();
         display.setHotelList(hotelList);
-        display.setSearchInfo(startDateString, endDateString, guests.getValue());
+        display.setSearchInfo(startDateString, endDateString, guests.getValue(), numDays);
         
         ((Node)event.getSource()).getScene().getWindow().hide();
         stage.setMaximized(true);

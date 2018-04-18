@@ -29,6 +29,7 @@ import javafx.stage.Stage;
 import vinnsla.leit;
 import controller.SearchController;
 import java.util.ArrayList;
+import javafx.scene.text.Text;
 import vinnsla.Hotel;
 
 /**
@@ -50,6 +51,8 @@ public class FXMLDocumentController implements Initializable {
     private ComboBox<String> guests;
     @FXML
     private Button searchButton;
+    @FXML
+    private Text dateCorrectMessage;
     
     private String startDateString, endDateString;
     private leit nyLeit = new leit();
@@ -73,6 +76,9 @@ public class FXMLDocumentController implements Initializable {
         endDateString = dateToString(endDate);
         int guestsInt = Integer.parseInt(guests.getValue());
         
+        if (numberOfDays() < 1) {
+            dateCorrectMessage.setVisible(true);
+        } else {
         nyLeit.newSearch(searchStringText, startDateString, endDateString, guestsInt);
         hotelList = newSController.searchHotels(nyLeit);
         newLeitPage(event);
@@ -84,11 +90,19 @@ public class FXMLDocumentController implements Initializable {
             nyLeit.getStartDate() + 
             nyLeit.getEndDate() + 
             nyLeit.getGuests());
+        }
     }
     
     private String dateToString(DatePicker date) {
         LocalDate ld = date.getValue();
         return ld.toString();
+    }
+    
+    private int numberOfDays() {
+        long date1 = startDate.getValue().toEpochDay();
+        long date2 = endDate.getValue().toEpochDay();
+        int  days  = (int) (date2 - date1);
+        return days;
     }
     
     private void newLeitPage(ActionEvent event) throws IOException {        
@@ -100,8 +114,8 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(new Scene(p));
         
         LeitarNidController display = loader.getController();
+        display.setSearchInfo(startDateString, endDateString, guests.getValue(), numberOfDays());
         display.setHotelList(hotelList);
-        display.setSearchInfo(startDateString, endDateString, guests.getValue());
         
         ((Node)event.getSource()).getScene().getWindow().hide();
         stage.setMaximized(true);
