@@ -108,7 +108,7 @@ public class HotelUpplController implements Initializable {
         this.currGuests = guests;
         fromDateLabel.setText(currStartDate);
         toDateLabel.setText(currEndDate);
-        if (guests.equals(1)) {
+        if (guests.equals("1")) {
             numGuestsLabel.setText(currGuests + " gestur");
         } else {
             numGuestsLabel.setText(currGuests + " gestir");
