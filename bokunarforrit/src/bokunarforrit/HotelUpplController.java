@@ -91,7 +91,8 @@ public class HotelUpplController implements Initializable {
     
     public void setSelectedHotel(Hotel selectedHotel) {
         this.selectedHotel = selectedHotel;
-        Image image = new Image("https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg");
+        Image image = new Image(selectedHotel.getPicturesLarge());
+        //Image image = new Image("https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg");
         hotelImage.setImage(image);
         hotelName.setText(selectedHotel.getName());
         hotelInfo.setText(selectedHotel.getDescription());

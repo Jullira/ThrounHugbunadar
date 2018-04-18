@@ -15,7 +15,8 @@ public class Hotel {
     private String city;
     private int areaCode;
     private String description;
-    private String pictures;
+    private String picturesSmall;
+    private String picturesLarge;
     private double grade;
     private int starRating;
     private boolean swimmingPool;
@@ -23,19 +24,21 @@ public class Hotel {
     private boolean wiFi;
     private  boolean handicapFacilities;
     private boolean gym;
+    private int price;
     private int hotelID;
     private String roomTableName;
     private String reviewTableName;
 
     
     
-    public void newHotel(String name, String address, String city, int areaCode, String description, String pictures, double grade, int starRating, boolean swimmingPool, boolean breakfast, boolean wiFi, boolean handicapFacilities, boolean gym, int hotelID, String roomTableName, String reviewTableName) {
+    public void newHotel(String name, String address, String city, int areaCode, String description, String picturesSmall, String picturesLarge, double grade, int starRating, boolean swimmingPool, boolean breakfast, boolean wiFi, boolean handicapFacilities, boolean gym, int price, int hotelID, String roomTableName, String reviewTableName) {
         this.name = name;
         this.address = address;
         this.city = city;
         this.areaCode = areaCode;
         this.description = description;
-        this.pictures = pictures;
+        this.picturesSmall = picturesSmall;
+        this.picturesLarge = picturesLarge;
         this.grade = grade;
         this.starRating = starRating;
         this.swimmingPool = swimmingPool;
@@ -43,6 +46,7 @@ public class Hotel {
         this.wiFi = wiFi;
         this.handicapFacilities = handicapFacilities;
         this.gym = gym;
+        this.price = price;
         this.hotelID = hotelID;
         this.roomTableName = roomTableName;
         this.reviewTableName = reviewTableName;
@@ -64,8 +68,12 @@ public class Hotel {
         return description;
     }
 
-    public String getPictures() {
-        return pictures;
+    public String getPicturesSmall() {
+        return picturesSmall;
+    }
+
+    public String getPicturesLarge() {
+        return picturesLarge;
     }
 
     public double getGrade() {
@@ -94,6 +102,10 @@ public class Hotel {
 
     public boolean isGym() {
         return gym;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public int getHotelID() {

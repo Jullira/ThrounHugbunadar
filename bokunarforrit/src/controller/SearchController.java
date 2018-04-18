@@ -19,13 +19,13 @@ public class SearchController {
     
     private ArrayList<String[]> dataHotelList = new ArrayList<>();
     private ArrayList<Hotel> hotelList = new ArrayList<>();
-    private String[] selectedString = new String[13];
+    private String[] selectedString = new String[15];
     
     
     public ArrayList<Hotel> searchHotels(leit nyleit) {
         DatabaseConnection dc = new DatabaseConnection();
         dataHotelList = dc.openConnection(nyleit);
-        
+            
         int j = 0; 
         for(int i = 0; i < dataHotelList.size(); i++) {
             selectedString = dataHotelList.get(i);
@@ -37,13 +37,25 @@ public class SearchController {
             gym = selectedString[12].equals("1");
             
             Hotel selectedHotel = new Hotel();
-            selectedHotel.newHotel(selectedString[0], selectedString[1], 
-            selectedString[2], Integer.parseInt(selectedString[3]), 
-            selectedString[4], selectedString[5], 
-            Double.parseDouble("5"), 
-            Integer.parseInt(selectedString[7]), 
-            wifi, pool, breakfast, handicap, gym,
-            1, "revow", "review");
+            selectedHotel.newHotel(
+                    selectedString[0], 
+                    selectedString[1], 
+                    selectedString[2], 
+                    Integer.parseInt(selectedString[3]), 
+                    selectedString[4], 
+                    selectedString[5], 
+                    selectedString[13], 
+                    Double.parseDouble("5"), 
+                    Integer.parseInt(selectedString[7]), 
+                    wifi, 
+                    pool, 
+                    breakfast, 
+                    handicap, 
+                    gym,
+                    Integer.parseInt(selectedString[14]),
+                    1, 
+                    "roomTableName",
+                    "reviewTableName");
             hotelList.add(selectedHotel);
             j++;
         }

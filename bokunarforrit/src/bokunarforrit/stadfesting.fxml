@@ -47,7 +47,7 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <HBox>
+                        <HBox alignment="BOTTOM_CENTER">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bókunin þín á ">
                                  <font>
@@ -66,7 +66,7 @@
                               </Text>
                            </children>
                         </HBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hlökkum til að sjá þig Aumingi">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hlökkum til að sjá þig :)">
                            <font>
                               <Font size="24.0" />
                            </font>

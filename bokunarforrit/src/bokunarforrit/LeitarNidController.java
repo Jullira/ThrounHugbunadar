@@ -105,11 +105,9 @@ public class LeitarNidController implements Initializable {
             VBox.setMargin(hotelText, new Insets(10,10,10,10));
             VBox.setMargin(hotelInfo, new Insets(0,10,10,10));
             vboxHotel.getChildren().addAll(hotelText, hotelInfo);
-            /*
-            Image imgage = new Image(selectedHotel.getPictures());
+            Image imgage = new Image(selectedHotel.getPicturesSmall());
             ImageView img = new ImageView(imgage);
-            */
-            ImageView img = new ImageView("https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg");
+            //ImageView img = new ImageView("https://media-cdn.tripadvisor.com/media/photo-s/04/30/37/14/black-pearl-reykjavik.jpg");
             
             img.setFitWidth(200);
             img.setFitHeight(150);
