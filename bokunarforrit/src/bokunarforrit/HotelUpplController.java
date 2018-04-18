@@ -142,8 +142,7 @@ public class HotelUpplController implements Initializable {
     }
     
     public void setSearchInfo(String startDate, String endDate, String guests, String totalPriceString) {
-        this.currStartDate = startDate;
-        this.currEndDate = endDate;
+        setDates(startDate, endDate);
         this.currGuests = guests;
         this.numDays = numDays;
         fromDateLabel.setText(currStartDate);
@@ -155,6 +154,73 @@ public class HotelUpplController implements Initializable {
         }
         totalPriceLabel.setText(totalPriceString + "kr");
         this.totalPriceString = totalPriceString;
+    }
+    
+    private void setDates(String start, String end) {
+        String string = start;
+        String[] parts = start.split("-");
+        String year = parts[0];
+        String month = parts[1];
+        String day = parts[2];
+        switch (month) {
+            case "01": month = "janúar";
+                break;
+            case "02": month = "febrúar";
+                break;
+            case "03": month = "mars";
+                break;
+            case "04": month = "apríl";
+                break;
+            case "05": month = "maí";
+                break;
+            case "06": month = "júní";
+                break;
+            case "07": month = "júlí";
+                break;
+            case "08": month = "ágúst";
+                break;
+            case "09": month = "september";
+                break;
+            case "10": month = "október";
+                break;
+            case "11": month = "nóvember";
+                break;
+            case "12": month = "desember";
+                break;
+        }
+        this.currStartDate = day + "." + month + " " + year;
+        string = end;
+        parts = end.split("-");
+        year = parts[0];
+        month = parts[1];
+        day = parts[2];
+        switch (month) {
+            case "01": month = "janúar";
+                break;
+            case "02": month = "febrúar";
+                break;
+            case "03": month = "mars";
+                break;
+            case "04": month = "apríl";
+                break;
+            case "05": month = "maí";
+                break;
+            case "06": month = "júní";
+                break;
+            case "07": month = "júlí";
+                break;
+            case "08": month = "ágúst";
+                break;
+            case "09": month = "september";
+                break;
+            case "10": month = "október";
+                break;
+            case "11": month = "nóvember";
+                break;
+            case "12": month = "desember";
+                break;
+        }
+        this.currEndDate = day + "." + month + " " + year;
     }
     
      private void newBookingScene( ActionEvent event) throws IOException { // EEYYYYYYÐÐÐÐÐAÐAAAAA?????????
