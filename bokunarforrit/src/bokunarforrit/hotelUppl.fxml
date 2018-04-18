@@ -34,12 +34,9 @@
       <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: lightgreen;" GridPane.columnIndex="2" />
       <HBox alignment="CENTER" style="-fx-background-color: dbffd1;" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <VBox alignment="TOP_CENTER">
+            <VBox fx:id="hotelBox" alignment="TOP_CENTER">
                <children>
-                  <ImageView fx:id="hotelImage" fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/black.jpg" />
-                     </image>
+                  <ImageView fx:id="hotelImage" fitWidth="550.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
@@ -52,7 +49,7 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Label fx:id="hotelInfo" style="-fx-border-style: solid;" text="Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hót" wrapText="true">
+                  <Label fx:id="hotelInfo" maxWidth="550.0" style="-fx-border-style: solid;" text="Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hótel Upplýsingar um hót" wrapText="true">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -86,6 +87,8 @@ public class BokunUpplController implements Initializable {
         StadfestingController display = loader.getController();
         display.setHotelName(currHotelName);
         
+        ((Node)event.getSource()).getScene().getWindow().hide();
+        stage.setMaximized(true);
         stage.show();
         }
     }

@@ -47,10 +47,15 @@ public class StadfestingController implements Initializable {
     }
     
     public void newHomePage(ActionEvent event) throws IOException {
-        Parent homePage = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        Scene homePageScene = new Scene(homePage);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(homePageScene);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("FXMLDocument.fxml"));
+        loader.load();
+        Parent p = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        
+        ((Node)event.getSource()).getScene().getWindow().hide();
+        stage.setMaximized(true);
         stage.show();
     }
     
