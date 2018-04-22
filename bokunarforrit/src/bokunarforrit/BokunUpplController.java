@@ -8,6 +8,7 @@ package bokunarforrit;
 import controller.BookingController;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,6 +63,7 @@ public class BokunUpplController implements Initializable {
     private String currStartDate, currEndDate, currGuests, currHotelName, totalPrice;
     private Booking nyBokun = new Booking();
     private BookingController newBController = new BookingController();
+    private ArrayList<Booking> bookingList = new ArrayList<>();
     
     /**
      * Initializes the controller class.
@@ -86,7 +88,7 @@ public class BokunUpplController implements Initializable {
         String email = emailTextField.getText();
         
         nyBokun.newBooking(hotel, areaCode, startDate, endDate, Guests, fullName, address, zipCode, city, country, phoneNumber, email);
-        newBController.newBooking(nyBokun);
+        bookingList = newBController.newBooking(nyBokun);
         confirmHandler(event);
         
         System.out.println(nyBokun.getHotel() + 
