@@ -82,9 +82,7 @@ public class FXMLDocumentController implements Initializable {
         nyLeit.newSearch(searchStringText, startDateString, endDateString, guestsInt);
         hotelList = newSController.searchHotels(nyLeit);
         newLeitPage(event);
-        
-        
-        
+    
         System.out.println(
             nyLeit.getSearchString() + 
             nyLeit.getStartDate() + 

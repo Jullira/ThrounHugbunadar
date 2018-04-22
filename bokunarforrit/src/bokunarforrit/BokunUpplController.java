@@ -77,6 +77,7 @@ public class BokunUpplController implements Initializable {
         // TODO
     }
     
+    // work in progress, for Booking part
     /*public ArrayList<Booking> getBookingList() {
         return bookingList;
     }*/
@@ -88,7 +89,8 @@ public class BokunUpplController implements Initializable {
             errorMessage.setVisible(true);
         } else {
         
-        String hotel = hotelNafn.getText();
+         // work in progress, for Booking part
+        /*String hotel = hotelNafn.getText();
         int areaCode = hotelhotel.getAreaCode();
         String startDate = leitleit.getStartDate();
         String endDate = leitleit.getEndDate();
@@ -102,8 +104,7 @@ public class BokunUpplController implements Initializable {
         String email = emailTextField.getText();
         
         nyBokun.newBooking(hotel, areaCode, startDate, endDate, Guests, fullName, address, zipCode, city, country, phoneNumber, email);
-        //bookingList = 
-        newBController.newBooking(nyBokun);
+        bookingList = newBController.newBooking(nyBokun);
         
         System.out.println(nyBokun.getHotel() + 
                            nyBokun.getAreaCode() +
@@ -116,7 +117,7 @@ public class BokunUpplController implements Initializable {
                            nyBokun.getCity() +
                            nyBokun.getCountry() +
                            nyBokun.getPhoneNumber() +
-                           nyBokun.getEmail());
+                           nyBokun.getEmail());*/
         
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("stadfesting.fxml"));
@@ -134,6 +135,7 @@ public class BokunUpplController implements Initializable {
         }
     }
     
+    // seting booking information
     public void setSearchInfo(String startDate, String endDate, String guests, String totalPrice) {
         this.currStartDate = startDate;
         this.currEndDate = endDate;
