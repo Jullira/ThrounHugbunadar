@@ -5,6 +5,7 @@
  */
 package bokunarforrit;
 
+import controller.BookingController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import vinnsla.Booking;
 
 /**
  * FXML Controller class
@@ -58,7 +60,8 @@ public class BokunUpplController implements Initializable {
     private Text errorMessage;
 
     private String currStartDate, currEndDate, currGuests, currHotelName, totalPrice;
-    
+    private Booking nyBokun = new Booking();
+    private BookingController newBController = new BookingController();
     
     /**
      * Initializes the controller class.
@@ -69,7 +72,35 @@ public class BokunUpplController implements Initializable {
     }
     
     private void confirmButtonClicked(ActionEvent event) throws IOException {
+        String hotel = hotelNafn.getText();
+        int areaCode = Integer.parseInt(postCodeTextField.getText());
+        String startDate = fromDateLabel.getText();
+        String endDate = toDateLabel.getText();
+        int Guests = Integer.parseInt(numGuestsLabel.getText());
+        String fullName = nameTextField.getText();
+        String address = adressTextField.getText();
+        int zipCode = Integer.parseInt(postCodeTextField.getText());
+        String city = cityTextField.getText();
+        String country = countryTextField.getText();
+        String phoneNumber = phoneNumberTextField.getText(); 
+        String email = emailTextField.getText();
+        
+        nyBokun.newBooking(hotel, areaCode, startDate, endDate, Guests, fullName, address, zipCode, city, country, phoneNumber, email);
+        newBController.newBooking(nyBokun);
         confirmHandler(event);
+        
+        System.out.println(nyBokun.getHotel() + 
+                           nyBokun.getAreaCode() +
+                           nyBokun.getStartDate() +
+                            nyBokun.getEndDate() +
+                            nyBokun.getGuests() +
+                            nyBokun.getFullName() +
+                            nyBokun.getAddress() +
+                            nyBokun.getZipCode() +
+                            nyBokun.getCity() +
+                            nyBokun.getCountry() +
+                            nyBokun.getPhoneNumber() +
+                            nyBokun.getEmail());
     }
     
     @FXML

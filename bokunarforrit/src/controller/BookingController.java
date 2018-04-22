@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.util.ArrayList;
 import vinnsla.Booking;
 import vinnsla.DatabaseConnection;
 
@@ -14,17 +15,37 @@ import vinnsla.DatabaseConnection;
  */
 public class BookingController {
     
-    // Þetta á ekki að vera void endilega, vorum ekki með neina skilgreiningu í UML-inu okkar
+    private ArrayList<String[]> dataBookingList = new ArrayList<>();
+    private ArrayList<Booking> bookingList = new ArrayList<>();
+    private String[] selectedString = new String[12];
     
-    /*public void openBooking() {
-    }*/
-    
-    /*public void cancelBooking() {
-    }*/
-    
-    public void newBooking(Booking nybokun) {
+    public ArrayList<Booking> newBooking(Booking nyBokun) {
         DatabaseConnection dc = new DatabaseConnection();
-        //dc.openConnection(nybokun);
+        dataBookingList = dc.openConnection(nyBokun);
+        
+        for(int i = 0; i < dataBookingList.size(); i++) {
+            selectedString = dataBookingList.get(i);
+            
+            Booking selectedBooking = new Booking();
+            selectedBooking.newBooking(
+                    selectedString[0],
+                    Integer.parseInt(selectedString[1]),
+                    selectedString[2],
+                    selectedString[3],
+                    Integer.parseInt(selectedString[4]),
+                    selectedString[5],
+                    "address",
+                    210,
+                    "city",
+                    "country",
+                    "phoneNumber",
+                    "email");
+
+            bookingList.add(selectedBooking);
+        }
+        
+        
+        return bookingList;
     }
     
 }

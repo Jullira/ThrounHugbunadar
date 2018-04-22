@@ -880,8 +880,75 @@ public class DatabaseConnection {
         return queryList;
     }
     
-    private String makeBookingString(String hotel, int areaCode, int guests, int startDate, int endDate) {
-        return null;
+    private ArrayList<String> makeBookingString(String hotel, int areaCode, int guests, String startDate, String endDate, ArrayList<String> months, ArrayList<String> days, int roomNumber) {
+        ArrayList<String> roomUpdates = new ArrayList<>();
+        String hotelText = hotel.replaceAll("\\s+","");
+        
+        for (int i = 0; i < months.size(); i++)
+        {
+            String update = "UPDATE " + hotelText + "RoomsAvailable" + months.get(i) + "19 SET ";
+            int monthIndex = 0;
+            for (int j = 0; j < days.size(); j++)
+            {
+                if (monthIndex == i)
+                {
+                    update += days.get(j) + " = 0";
+                    if (j + 1 < days.size() && "Date1".equals(days.get(j + 1)))
+                    {
+                        update += " ";
+                    }
+                    else
+                    {
+                        update += ", ";
+                    }
+                }
+                if (j + 1 < days.size() && "Date1".equals(days.get(j + 1)))
+                {
+                    monthIndex++;
+                }
+            }
+            update += "WHERE RoomNumber = " + roomNumber + ";";
+            roomUpdates.add(update);
+        }
+        
+        return roomUpdates;
+    }
+    
+    private String makeRoomNumberString(String hotel, int areaCode, int guests, String startDate, String endDate, ArrayList<String> months, ArrayList<String> days) {
+        String hotelText = hotel.replaceAll("\\s+","");
+        String query = "SELECT A.RoomNumber FROM " + hotelText + "RoomsAvailable" + months.get(0) + "19 AS A";
+        
+        for (int i = 1; i < months.size(); i++)
+        {
+            query += (", " + hotelText + "RoomsAvailable" + months.get(i) + "19");
+        }
+        
+        query += " WHERE ";
+        
+        int monthIndex = 0;
+        for (int i = 0; i < days.size(); i++)
+        {
+            if (monthIndex == 0)
+            {
+                query += ("A." + days.get(i) + " = 1 ");
+            }
+            else
+            {
+                query += (hotelText + "RoomsAvailable" + months.get(monthIndex) + "19." + days.get(i) + " = 1 ");
+            }
+            if (i + 1 < days.size())
+            {
+                query += "AND ";
+                if ("Date1".equals(days.get(i + 1)))
+                {
+                    monthIndex++;
+                }
+            }
+        }
+        
+        query += ";";
+        
+        return query;
     }
     
     /**
@@ -969,16 +1036,202 @@ public class DatabaseConnection {
         return results;
     }
     
-    public String openConnection(Booking nyBokun) {
+    public ArrayList<String[]> openConnection(Booking nyBokun) {
         String hotel = nyBokun.getHotel();
-        int areaCode = 101; //nyBokun.getAreaCode();
+        int areaCode = nyBokun.getAreaCode();
         String customerName = nyBokun.getFullName();
         int guests = nyBokun.getGuests();
-        int startDate = nyBokun.getStartDate();
-        int endDate = nyBokun.getEndDate();
+        String startDate = nyBokun.getStartDate();
+        String endDate = nyBokun.getEndDate();
         
-        String bookRoom = makeBookingString(hotel, areaCode, guests, startDate, endDate);
+        ArrayList<String> months = new ArrayList<>();
+        ArrayList<String> days = new ArrayList<>();
+        String [] startDateParts = startDate.split("-");
+        String startYear = startDateParts[0];
+        String startMonth = startDateParts[1];
+        String startDay;
+        if(!"10".equals(startDateParts[2])){
+            startDay = startDateParts[2].replaceFirst("0", "");
+        }
+        else {
+            startDay = startDateParts[2];
+        }
         
+        String [] endDateParts = endDate.split("-");
+        String endYear = endDateParts[0];
+        String endMonth = endDateParts[1];
+        String endDay = endDateParts[2];
+        
+        // Fill up the ArrayLists to loop through all requested dates
+        int startM = Integer.parseInt(startMonth);
+        int endM = Integer.parseInt(endMonth);
+        if (startM <= endM)
+        {
+            for (int i = startM; i <= endM; i++)
+            {
+                if (i < 10)
+                {
+                    months.add("0" + i);
+                }
+                else
+                {
+                    months.add("" + i);
+                }
+            }
+        }
+        
+        for (int i = 0; i < months.size(); i++)
+        {
+            System.out.println(months.get(i));
+        }
+        
+        int startD = Integer.parseInt(startDay);
+        int endD = Integer.parseInt(endDay);
+        for (int i = startM; i <= endM; i++)
+        {
+            if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12)
+            {
+                if (startM == endM)
+                {
+                    for (int j = startD; j <= endD; j++)
+                    {
+                        days.add("Date" + j);
+                    }
+                }
+                else
+                {
+                    if (i == startM)
+                    {
+                        for (int j = startD; j <= 31; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else if (i == endM)
+                    {
+                        for (int j = 1; j <= endD; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 1; j <= 31; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                }
+            }
+            else if (i == 4 || i == 6 || i == 9 || i == 11)
+            {
+                if (startM == endM)
+                {
+                    for (int j = startD; j <= endD; j++)
+                    {
+                        days.add("Date" + j);
+                    }
+                }
+                else
+                {
+                    if (i == startM)
+                    {
+                        for (int j = startD; j <= 30; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else if (i == endM)
+                    {
+                        for (int j = 1; j <= endD; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 1; j <= 30; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (startM == endM)
+                {
+                    for (int j = startD; j <= endD; j++)
+                    {
+                        days.add("Date" + j);
+                    }
+                }
+                else
+                {
+                    if (i == startM)
+                    {
+                        for (int j = startD; j <= 28; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else if (i == endM)
+                    {
+                        for (int j = 1; j <= endD; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 1; j <= 28; j++)
+                        {
+                            days.add("Date" + j);
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        String roomNumber = makeRoomNumberString(hotel, areaCode, guests, startDate, endDate, months, days);
+        
+        Connection conn = null;
+        try {
+            String url = "jdbc:sqlite:final.db";
+            conn = DriverManager.getConnection(url);
+            System.out.println("Tenging Virk");
+            Statement stmt = conn.createStatement();
+            
+            ResultSet rs = stmt.executeQuery(roomNumber);
+            int roomNumberResult = 0;
+            while (rs.next())
+            {
+                roomNumberResult = rs.getInt(1);
+            }
+            
+            ArrayList<String> bookRoom = makeBookingString(hotel, areaCode, guests, startDate, endDate, months, days, roomNumberResult);
+            
+            stmt.executeUpdate("INSERT INTO Booking VALUES (" + customerName + ", " + startDate + ", " + endDate + ", " + hotel + "," + areaCode + ");");
+            
+            for (int i = 0; i < bookRoom.size(); i++)
+            {
+                stmt.executeUpdate(bookRoom.get(i));
+            }
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn !=null) {
+                    //Lokum tengingunni ef hún átti sér stað.
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+               
         return null;
     }
     
