@@ -94,15 +94,15 @@ public class BokunUpplController implements Initializable {
         System.out.println(nyBokun.getHotel() + 
                            nyBokun.getAreaCode() +
                            nyBokun.getStartDate() +
-                            nyBokun.getEndDate() +
-                            nyBokun.getGuests() +
-                            nyBokun.getFullName() +
-                            nyBokun.getAddress() +
-                            nyBokun.getZipCode() +
-                            nyBokun.getCity() +
-                            nyBokun.getCountry() +
-                            nyBokun.getPhoneNumber() +
-                            nyBokun.getEmail());
+                           nyBokun.getEndDate() +
+                           nyBokun.getGuests() +
+                           nyBokun.getFullName() +
+                           nyBokun.getAddress() +
+                           nyBokun.getZipCode() +
+                           nyBokun.getCity() +
+                           nyBokun.getCountry() +
+                           nyBokun.getPhoneNumber() +
+                           nyBokun.getEmail());
     }
     
     @FXML
@@ -134,7 +134,7 @@ public class BokunUpplController implements Initializable {
         fromDateLabel.setText(currStartDate);
         toDateLabel.setText(currEndDate);
         totalPriceLabel.setText(totalPrice + "kr");
-        if (guests.equals(1)) {
+        if (guests.equals("1")) {
             numGuestsLabel.setText(currGuests + " gestur");
         } else {
             numGuestsLabel.setText(currGuests + " gestir");
