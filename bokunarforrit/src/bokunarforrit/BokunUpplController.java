@@ -76,6 +76,10 @@ public class BokunUpplController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+    
+    public ArrayList<Booking> getBookingList() {
+        return bookingList;
+    }
   
     
     @FXML
@@ -86,8 +90,8 @@ public class BokunUpplController implements Initializable {
         
         String hotel = hotelNafn.getText();
         int areaCode = hotelhotel.getAreaCode();
-        String startDate = fromDateLabel.getText();
-        String endDate = toDateLabel.getText();
+        String startDate = leitleit.getStartDate();
+        String endDate = leitleit.getEndDate();
         int Guests = leitleit.getGuests();
         String fullName = nameTextField.getText();
         String address = adressTextField.getText();
