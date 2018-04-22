@@ -1036,7 +1036,7 @@ public class DatabaseConnection {
         return results;
     }
     
-    public ArrayList<String[]> openConnection(Booking nyBokun) {
+    public void openConnection(Booking nyBokun) {
         String hotel = nyBokun.getHotel();
         int areaCode = nyBokun.getAreaCode();
         String customerName = nyBokun.getFullName();
@@ -1232,7 +1232,7 @@ public class DatabaseConnection {
             }
         }
                
-        return null;
+        //return null;
     }
     
 }

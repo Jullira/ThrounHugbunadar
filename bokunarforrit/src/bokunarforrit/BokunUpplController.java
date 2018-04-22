@@ -65,7 +65,7 @@ public class BokunUpplController implements Initializable {
     private String currStartDate, currEndDate, currGuests, currHotelName, totalPrice;
     private Booking nyBokun = new Booking();
     private BookingController newBController = new BookingController();
-    private ArrayList<Booking> bookingList = new ArrayList<>();
+    //private ArrayList<Booking> bookingList = new ArrayList<>();
     private Hotel hotelhotel = new Hotel();
     private leit leitleit = new leit();
   
@@ -77,9 +77,9 @@ public class BokunUpplController implements Initializable {
         // TODO
     }
     
-    public ArrayList<Booking> getBookingList() {
+    /*public ArrayList<Booking> getBookingList() {
         return bookingList;
-    }
+    }*/
   
     
     @FXML
@@ -102,7 +102,8 @@ public class BokunUpplController implements Initializable {
         String email = emailTextField.getText();
         
         nyBokun.newBooking(hotel, areaCode, startDate, endDate, Guests, fullName, address, zipCode, city, country, phoneNumber, email);
-        bookingList = newBController.newBooking(nyBokun);
+        //bookingList = 
+        newBController.newBooking(nyBokun);
         
         System.out.println(nyBokun.getHotel() + 
                            nyBokun.getAreaCode() +
