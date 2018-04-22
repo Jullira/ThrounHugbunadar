@@ -23,6 +23,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import vinnsla.Booking;
+import vinnsla.Hotel;
+import vinnsla.leit;
 
 /**
  * FXML Controller class
@@ -64,7 +66,9 @@ public class BokunUpplController implements Initializable {
     private Booking nyBokun = new Booking();
     private BookingController newBController = new BookingController();
     private ArrayList<Booking> bookingList = new ArrayList<>();
-    
+    private Hotel hotelhotel = new Hotel();
+    private leit leitleit = new leit();
+  
     /**
      * Initializes the controller class.
      */
@@ -72,16 +76,22 @@ public class BokunUpplController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+  
     
-    private void confirmButtonClicked(ActionEvent event) throws IOException {
+    @FXML
+    private void confirmHandler(ActionEvent event) throws IOException{
+        if (nameTextField.getText().isEmpty()) {
+            errorMessage.setVisible(true);
+        } else {
+        
         String hotel = hotelNafn.getText();
-        int areaCode = Integer.parseInt(postCodeTextField.getText());
+        int areaCode = hotelhotel.getAreaCode();
         String startDate = fromDateLabel.getText();
         String endDate = toDateLabel.getText();
-        int Guests = Integer.parseInt(numGuestsLabel.getText());
+        int Guests = leitleit.getGuests();
         String fullName = nameTextField.getText();
         String address = adressTextField.getText();
-        int zipCode = Integer.parseInt(postCodeTextField.getText());
+        int zipCode = 10;
         String city = cityTextField.getText();
         String country = countryTextField.getText();
         String phoneNumber = phoneNumberTextField.getText(); 
@@ -89,7 +99,6 @@ public class BokunUpplController implements Initializable {
         
         nyBokun.newBooking(hotel, areaCode, startDate, endDate, Guests, fullName, address, zipCode, city, country, phoneNumber, email);
         bookingList = newBController.newBooking(nyBokun);
-        confirmHandler(event);
         
         System.out.println(nyBokun.getHotel() + 
                            nyBokun.getAreaCode() +
@@ -103,13 +112,7 @@ public class BokunUpplController implements Initializable {
                            nyBokun.getCountry() +
                            nyBokun.getPhoneNumber() +
                            nyBokun.getEmail());
-    }
-    
-    @FXML
-    private void confirmHandler(ActionEvent event) throws IOException{
-        if (nameTextField.getText().isEmpty()) {
-            errorMessage.setVisible(true);
-        } else {
+        
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("stadfesting.fxml"));
         loader.load();
